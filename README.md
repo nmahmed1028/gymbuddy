@@ -2,9 +2,19 @@
 
 #### Make sure you have npm installed, then run:
 `npm install`
+#### To run the website locally, run:
 `npm run dev`
 
-## Starter template README
+# How to deploy as a dev
+
+#### The first time:
+`npm install -g firebase-tools`
+`firebase login`
+
+#### To deploy:
+`firebase deploy`
+
+## Starter template README below
 
 # React + Vite
 
