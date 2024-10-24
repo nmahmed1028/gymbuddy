@@ -12,7 +12,7 @@
 `firebase login`
 
 #### To deploy:
-`firebase deploy`
+`npm run deploy`
 
 ## Starter template README below
 
