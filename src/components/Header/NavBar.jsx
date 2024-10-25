@@ -17,7 +17,7 @@ const Navbar = () => {
       : '0px',
   };
 
-  const user = useAuth().user;
+  const user = useAuth().curUser;
   var links = (<ul></ul>);
   if (!user)
   {

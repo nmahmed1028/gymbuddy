@@ -19,6 +19,7 @@ function App() {
           <br/>
           <h3 className="read-the-docs">Workout Tracker</h3>
           <Routes>
+            <Route path="/" element={<PrivateRoute />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/logout" element={<Logout />}/>

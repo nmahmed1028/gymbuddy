@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/AuthProvider";
 
 const PrivateRoute = () => {
-  const user = useAuth().user;
+  const user = useAuth().curUser;
   if (!user) return <Navigate to="/login" />;
   return <Outlet />;
 };

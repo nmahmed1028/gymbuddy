@@ -12,7 +12,7 @@ const Login = () => {
     const auth = useAuth();
     const handleSubmit = (e) => {
         e.preventDefault();
-        auth.loginAction({email, password});
+        auth.loginAction({auth, email, password});
     }
     
     return (
