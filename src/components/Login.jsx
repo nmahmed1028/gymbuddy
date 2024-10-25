@@ -22,7 +22,7 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email-address">
-                                    Email address
+                                    Email address:
                     </label>
                     <input
                         id="email-address"
@@ -49,7 +49,7 @@ const Login = () => {
                     />
                 </div>
                 <br/>
-                <button className="text-white" type="submit">Login</button>
+                <button className="text-white font-bold bg-blue-500" type="submit">Login</button>
             </form>
             <br />
             <p className="text-m text-black text-center">

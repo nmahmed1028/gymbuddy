@@ -69,7 +69,7 @@ const Signup = () => {
                         <button
                             type="submit" 
                             onClick={onSubmit}    
-                            className="text-white"                    
+                            className="text-white font-bold bg-blue-500"                    
                         >  
                             Sign up                                
                         </button>
