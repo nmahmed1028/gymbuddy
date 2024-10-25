@@ -28,7 +28,6 @@ const AuthProvider = ({ children }) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            setUser(user);
             localStorage.setItem("site", user);
             navigate("/profile")
             console.log(user);
@@ -47,7 +46,6 @@ const AuthProvider = ({ children }) => {
     });
   };
   const logOut = () => {
-    setUser(null);
     localStorage.removeItem("site");
     useEffect(() => {
         navigate("/login");
