@@ -21,10 +21,10 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const navigate = useNavigate();
-  const loginAction = (data) => {
-    setPersistence(auth, browserLocalPersistence)
-    .then(() => {
-        signInWithEmailAndPassword(auth, data.email, data.password)
+  const loginAction = async (data) => {
+    await setPersistence(auth, browserLocalPersistence)
+    .then(async () => {
+        await signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
@@ -45,13 +45,13 @@ const AuthProvider = ({ children }) => {
         console.log(errorCode, errorMessage)
     });
   };
-  const logOut = () => {
+  const logOut = async () => {
     localStorage.removeItem("site");
     useEffect(() => {
         navigate("/login");
     });
     console.log("logged out");
-    return signOut(auth);
+    return await signOut(auth);
   };
 
   return (
