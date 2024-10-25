@@ -21,8 +21,8 @@ const Login = () => {
             <br />
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="email-address">
-                                    Email address:
+                    <label htmlFor="email-address" className="pr-2">
+                                    Email address
                     </label>
                     <input
                         id="email-address"
@@ -31,13 +31,14 @@ const Login = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}  
                         required
-                        placeholder="Email address:"
+                        placeholder="Email address"
+                        className="text-white text-sm"
                     />
                 </div>
                 <br/>
                 <div>
-                    <label htmlFor="password">
-                        Password:
+                    <label htmlFor="password" className="pr-10">
+                        Password
                     </label>
                     <input
                         id="password"
@@ -46,6 +47,7 @@ const Login = () => {
                         required                                                                                
                         placeholder="Password"
                         onChange={(e)=>setPassword(e.target.value)}
+                        className="text-white text-sm"
                     />
                 </div>
                 <br/>

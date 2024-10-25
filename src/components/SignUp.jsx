@@ -39,30 +39,34 @@ const Signup = () => {
                     <br />                                                                         
                     <form>                                                                                            
                         <div>
-                            <label htmlFor="email-address">
-                                Email address:
+                            <label htmlFor="email-address" className="pr-2">
+                                Email address
                             </label>
                             <input
+                                id="email-address"
                                 type="email"
                                 label="Email address"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}  
                                 required                                    
-                                placeholder="Email address"                                
+                                placeholder="Email address"
+                                className="text-white text-sm"                       
                             />
                         </div>
                         <br/>
                         <div>
-                            <label htmlFor="password">
-                                Password:
+                            <label htmlFor="password" className="pr-10">
+                                Password
                             </label>
                             <input
+                                id="password"
                                 type="password"
                                 label="Create password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} 
                                 required                                 
-                                placeholder="Password"              
+                                placeholder="Password"
+                                className="text-white text-sm"          
                             />
                         </div>                                             
                         <br/>
