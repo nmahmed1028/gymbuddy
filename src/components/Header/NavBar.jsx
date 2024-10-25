@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { links, social } from './data';
+import { linksLoggedIn, linksLoggedOut, social } from './data';
+import { useAuth } from "../../hooks/AuthProvider";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -15,6 +16,36 @@ const Navbar = () => {
       ? `${linksRef.current.getBoundingClientRect().height}px`
       : '0px',
   };
+
+  const user = useAuth();
+  var links = (<ul></ul>);
+  if (!user.token)
+  {
+    links = (<ul className='links' ref={linksRef}>
+        {linksLoggedOut.map((link) => {
+        const { id, url, text } = link;
+        return (
+            <li key={id}>
+            <a href={url}>{text}</a>
+            </li>
+        );
+        })}
+    </ul>);
+  }
+  else
+  {
+    links = (<ul className='links' ref={linksRef}>
+        {linksLoggedIn.map((link) => {
+        const { id, url, text } = link;
+        return (
+            <li key={id}>
+            <a href={url}>{text}</a>
+            </li>
+        );
+        })}
+    </ul>);
+  }
+
   return (
     <>
     <nav>
@@ -31,16 +62,7 @@ const Navbar = () => {
           ref={linksContainerRef}
           style={linkStyles}
         >
-          <ul className='links' ref={linksRef}>
-            {links.map((link) => {
-              const { id, url, text } = link;
-              return (
-                <li key={id}>
-                  <a href={url}>{text}</a>
-                </li>
-              );
-            })}
-          </ul>
+          {links}
         </div>
         {/* social icons
         <ul className='social-icons'>

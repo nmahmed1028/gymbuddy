@@ -1,5 +1,5 @@
 import { FaBehance, FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
-export const links = [
+export const linksLoggedIn = [
   {
     id: 2,
     url: '/nutrition',
@@ -19,6 +19,19 @@ export const links = [
     id: 5,
     url: '/profile',
     text: 'profile',
+  },
+];
+
+export const linksLoggedOut = [
+  {
+    id: 1,
+    url: '/register',
+    text: 'register',
+  },
+  {
+    id: 2,
+    url: '/login',
+    text: 'login',
   },
 ];
 
