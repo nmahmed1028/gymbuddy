@@ -5,6 +5,8 @@ import NavBar from './components/Header/NavBar'
 import AuthProvider from "./hooks/AuthProvider.jsx";
 import PrivateRoute from "./router/PrivateRoute.jsx";
 import Login from './components/Login'
+import SignUp from './components/SignUp.jsx'
+import Logout from './components/Logout.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +20,8 @@ function App() {
           <h3 className="read-the-docs">Workout Tracker</h3>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<SignUp />} />
+            <Route path="/logout" element={<Logout />}/>
             <Route path="/profile" element={<PrivateRoute />} />
             <Route path="/social" element={<PrivateRoute />} />
             <Route path="/nutrition" element={<PrivateRoute />} />

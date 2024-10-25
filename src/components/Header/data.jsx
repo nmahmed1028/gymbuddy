@@ -1,24 +1,29 @@
 import { FaBehance, FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 export const linksLoggedIn = [
   {
-    id: 2,
+    id: 1,
     url: '/nutrition',
     text: 'nutrition',
   },
   {
-    id: 3,
+    id: 2,
     url: '/workout',
     text: 'workout',
   },
   {
-    id: 4,
+    id: 3,
     url: '/social',
     text: 'social',
   },
   {
-    id: 5,
+    id: 4,
     url: '/profile',
     text: 'profile',
+  },
+  {
+    id: 5,
+    url: '/logout',
+    text: 'logout',
   },
 ];
 

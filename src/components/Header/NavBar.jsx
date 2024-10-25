@@ -17,9 +17,9 @@ const Navbar = () => {
       : '0px',
   };
 
-  const user = useAuth();
+  const user = useAuth().user;
   var links = (<ul></ul>);
-  if (!user.token)
+  if (!user)
   {
     links = (<ul className='links' ref={linksRef}>
         {linksLoggedOut.map((link) => {

@@ -1,46 +1,63 @@
-import { useAuth } from "../hooks/AuthProvider";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from 'react-router-dom'
+import { auth } from '../firebase.js';
+import {  signInWithEmailAndPassword   } from 'firebase/auth';
+import { useAuth } from "../hooks/AuthProvider";
 
 const Login = () => {
-    const { loginAction } = useAuth();
-    const [formData, setFormData] = useState({ username: "", password: "" });
-    
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-    
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const auth = useAuth();
     const handleSubmit = (e) => {
         e.preventDefault();
-        loginAction(formData);
-    };
+        auth.loginAction({email, password});
+    }
     
     return (
         <div className="card">
             <h2>Login</h2>
             <br />
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    value={formData.username}
-                    onChange={handleChange}
-                />
+                <div>
+                    <label htmlFor="email-address">
+                                    Email address
+                    </label>
+                    <input
+                        id="email-address"
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}  
+                        required
+                        placeholder="Email address:"
+                    />
+                </div>
                 <br/>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
+                <div>
+                    <label htmlFor="password">
+                        Password:
+                    </label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"                                    
+                        required                                                                                
+                        placeholder="Password"
+                        onChange={(e)=>setPassword(e.target.value)}
+                    />
+                </div>
                 <br/>
-                <br/>
-                <button type="submit">Login</button>
+                <button className="text-white" type="submit">Login</button>
             </form>
             <br />
-            <Link to="/register" className="register">Register</Link>
+            <p className="text-m text-black text-center">
+                            No account yet? {' '}
+                            <NavLink to="/register">
+                                Sign up
+                            </NavLink>
+            </p>
         </div>
     );
 };
