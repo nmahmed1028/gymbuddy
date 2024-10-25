@@ -10,11 +10,11 @@ function App() {
       <NavBar/>
       <br/>
       <h3 className="read-the-docs">Workout Tracker</h3>
-      <div className="card">
+      {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-      </div>
+      </div> */}
     </>
   )
 }
