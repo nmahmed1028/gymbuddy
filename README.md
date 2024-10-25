@@ -1,6 +1,6 @@
 # How to install and run
 
-#### Make sure you have npm installed, then run:
+#### Make sure you have npm (through homebrew or otherwise) installed, then run:
 `npm install`
 #### To run the website locally, run:
 `npm run dev`
