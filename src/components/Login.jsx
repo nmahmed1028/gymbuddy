@@ -4,13 +4,19 @@ import { auth } from '../firebase.js';
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
 import { useAuth } from "../hooks/AuthProvider";
 
-const Login = () => {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+/*
+This module handles all of the log in requirements for the application.
+When you start up Gymbuddy this is the default screen that opens up and allows user's to log in or sign up
+Upon successful log in the user is navigated to their profile tab 
+*/
 
-    const auth = useAuth();
-    const handleSubmit = (e) => {
+const Login = () => { // Function that handles the log in functionality
+    const navigate = useNavigate(); // Used to handle link navigation
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState(''); 
+
+    const auth = useAuth(); // Set's up the authenticator function
+    const handleSubmit = (e) => { //Submits e, which houses log in details to the authenticator
         e.preventDefault();
         auth.loginAction({auth, email, password});
     }
@@ -19,6 +25,9 @@ const Login = () => {
         <div className="card">
             <h2>Login</h2>
             <br />
+            {/*The following form sets up the log in functionality as well as the UI
+                It has various fields used to input email address, password, and a field to submit
+                Also includes a register button to send the user to the register screen*/}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email-address" className="pr-2">
