@@ -17,9 +17,9 @@ const Profile = () => {
         console.log('Email:', user.email);
         try {
             const docRef = await addDoc(collection(db, "users"), {
-            email: user.email,
-            name: name,
-            username: username
+                email: user.email,
+                name: name,
+                username: username
             });
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
