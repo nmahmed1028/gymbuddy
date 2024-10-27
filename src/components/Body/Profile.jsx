@@ -1,6 +1,32 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "../../firebase";
+import { useAuth } from "../../hooks/AuthProvider";
 
 const Profile = () => {
+    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
+
+    const user = useAuth().curUser;
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // Get data from input fields
+        console.log('Name:', name);
+        console.log('Username:', username);
+        console.log('Email:', user.email);
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+            email: user.email,
+            name: name,
+            username: username
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    };
+
     const editProfileBtn = (
         <div style={{ marginTop: "50px" }}>
             <Dialog.Root>
@@ -30,6 +56,8 @@ const Profile = () => {
                     className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     id="name"
                     defaultValue="" // TODO lookup name
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     />
                 </fieldset>
                 <fieldset className="mb-[15px] flex items-center gap-5">
@@ -47,12 +75,17 @@ const Profile = () => {
                             className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-r-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                             id="username"
                             defaultValue="" // TODO lookup username
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
                 </fieldset>
                 <div className="mt-[25px] flex justify-end">
                     <Dialog.Close asChild>
-                    <button className="text-white font-bold bg-blue-500 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                    <button 
+                    className="text-white font-bold bg-blue-500 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                    onClick={handleSubmit}
+                    >
                         Save changes
                     </button>
                     </Dialog.Close>
