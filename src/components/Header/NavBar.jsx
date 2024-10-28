@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { linksLoggedIn, linksLoggedOut, social } from './data';
 import { useAuth } from "../../hooks/AuthProvider";
@@ -14,14 +14,21 @@ const Navbar = () => {
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
 
-  const toggleLinks = () => {
-    setShowLinks(!showLinks);
-  };
-  const linkStyles = {
-    height: showLinks
-      ? `${linksRef.current.getBoundingClientRect().height}px`
-      : '0px',
-  };
+  // Dynamic height calculation for mobile
+  useEffect(() => {
+    const calcHeight = () => {
+      const linksHeight = linksRef.current.getBoundingClientRect().height;
+      if (showLinks) {
+        linksContainerRef.current.style.height = `${linksHeight}px`;
+      } else {
+        linksContainerRef.current.style.height = '0px';
+      }
+    };
+    
+    calcHeight();
+    window.addEventListener('resize', calcHeight);
+    return () => window.removeEventListener('resize', calcHeight);
+  }, [showLinks]);
 
   const user = useAuth().curUser;
   var links = (<ul></ul>);
@@ -58,15 +65,14 @@ const Navbar = () => {
       <div className='nav-center'>
         <div className='nav-header'>
           <h4>GymBuddy</h4>
-          <button className='nav-toggle' onClick={toggleLinks}>
+          <button className='nav-toggle' onClick={() => setShowLinks(!showLinks)}>
             <FaBars />
           </button>
         </div>
 
         <div
-          className='links-container'
+          className={`links-container ${showLinks ? 'show' : ''}`}
           ref={linksContainerRef}
-          style={linkStyles}
         >
           {links}
         </div>

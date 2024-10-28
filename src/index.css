@@ -415,3 +415,67 @@ nav {
     --radius: 0.5rem;
   }
 }
+
+/* Update existing nav styles */
+.nav-center {
+  position: relative;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.links-container {
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+/* Mobile First Approach */
+@media screen and (max-width: 599px) {
+  .links {
+    padding: 0.5rem 1rem;
+  }
+  
+  .links a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 600px) {
+  .nav-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .nav-header {
+    padding: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .links-container {
+    height: auto !important;
+    overflow: visible;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .links a {
+    padding: 0;
+    margin: 0;
+  }
+
+  .links a:hover {
+    padding: 0;
+    background: transparent;
+    color: var(--primary-500);
+  }
+}
