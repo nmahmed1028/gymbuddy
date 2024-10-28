@@ -59,7 +59,7 @@ const Profile = () => {
                     id="name"
                     value={name} // TODO lookup name
                     onChange={(e) => setName(e.target.value)}
-                    autocomplete="off"
+                    autoComplete="off"
                     />
                 </fieldset>
                 <fieldset className="mb-[15px] flex items-center gap-5">
@@ -78,7 +78,7 @@ const Profile = () => {
                             id="username"
                             value={username} // TODO lookup username
                             onChange={(e) => setUsername(e.target.value)}
-                            autocomplete="off"
+                            autoComplete="off"
                         />
                     </div>
                 </fieldset>
