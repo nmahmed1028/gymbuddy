@@ -158,7 +158,7 @@ const Profile = () => {
                     Name
                     </label>
                     <input
-                    className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                    className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] bg-gray-800"
                     id="name"
                     value={name} // TODO lookup name
                     onChange={(e) => setName(e.target.value)}
@@ -177,7 +177,7 @@ const Profile = () => {
                             @
                         </span>
                         <input
-                            className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-r-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                            className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-r-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]  bg-gray-800"
                             id="username"
                             value={username} // TODO lookup username
                             onChange={(e) => setUsername(e.target.value)}
