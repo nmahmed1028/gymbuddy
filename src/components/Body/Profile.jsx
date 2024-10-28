@@ -1,8 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { Box, Card, Inset, Text, Strong, Flex, Grid } from "@radix-ui/themes";
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/AuthProvider";
+import { Progress } from "@/components/ui/progress"
 
 /*
     This component is a profile page where users can edit their profile information.
@@ -12,7 +14,108 @@ const Profile = () => {
     const [username, setUsername] = useState('');
 
     const user = useAuth().curUser;
-    const handleSubmit = async (event) => {
+
+    const displayName = "John Doe"; // TODO lookup name
+    const usersName = "@johndoe"; // TODO lookup username
+    const email = user.email;
+    const photoURL = "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"; // TODO lookup photoURL
+
+    const mainProfileElem = (
+        <div style={{ marginTop: "30px" }}>
+            <Box maxWidth="250px">
+                <Card size="3">
+                    <Inset clip="padding-box" side="left" pb="current">
+                        <img
+                            src={photoURL}
+                            alt="User picture"
+                            style={{
+                                display: "block",
+                                objectFit: "cover",
+                                width: "100%",
+                                height: "100%",
+                            }}
+                        />
+                        <Grid align="center" columns="1" gap="1" p="3">
+                            <Text as="p" size="6" align="left" color="black">
+                                <Strong>{displayName}</Strong>
+                            </Text>
+                            <Text as="p" size="4" color='blue'>
+                                <Strong>{usersName}</Strong>
+                            </Text>
+                            <Text as="p" size="4">
+                                <Strong>{email}</Strong>
+                            </Text>
+                        </Grid>
+                    </Inset>
+                </Card>
+            </Box>
+        </div>
+    );
+
+    // TODO: Get progression data from database
+    const progressionElem = (
+        <div style={{ marginTop: "30px" }}>
+            <Inset clip="padding-box" side="left" pb="current">
+                <Box maxWidth="250px">
+                    <p>User Progress</p>
+                    <Progress value={75} size="3" variant="soft"/>
+                </Box>
+            </Inset>
+        </div>
+    );
+
+    const experienceElem = (
+        <div style={{ marginTop: "10px" }}>
+            <Box maxWidth="65px">
+                <Card size="3">
+                    <Grid align="center" columns="2" gap="1" p="3">
+                        <Inset clip="padding-box" side="left" pb="current">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Yellow_Star_with_rounded_edges.svg"
+                                alt="User picture"
+                                style={{
+                                    display: "block",
+                                    objectFit: "cover",
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                            />
+                        </Inset>
+                        <Inset clip="padding-box" side="left" pb="current">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Yellow_Star_with_rounded_edges.svg"
+                                alt="User picture"
+                                style={{
+                                    display: "block",
+                                    objectFit: "cover",
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                            />
+                        </Inset>
+                    </Grid>
+                </Card>
+            </Box>
+        </div>
+    );
+
+    const goalsElem = (
+        <div style={{ marginTop: "5px" }}>
+            <Inset clip="padding-box" side="left" pb="current">
+                <Box maxWidth="250px">
+                    <Dialog.Root>
+                    <Dialog.Trigger asChild>
+                        <button className="text-violet11 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none focus:shadow-black focus:outline-none">
+                        Add goal
+                        </button>
+                    </Dialog.Trigger>
+                    </Dialog.Root>
+                </Box>
+            </Inset>
+        </div>
+    );
+
+    const handleSubmitEditProfile = async (event) => {
         // Get data from input fields
         console.log('Name:', name);
         console.log('Username:', username);
@@ -86,7 +189,7 @@ const Profile = () => {
                     <Dialog.Close asChild>
                     <button 
                     className="text-white font-bold bg-blue-500 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
-                    onClick={handleSubmit}
+                    onClick={handleSubmitEditProfile}
                     >
                         Save changes
                     </button>
@@ -102,6 +205,10 @@ const Profile = () => {
 
     return (
         <>
+            {mainProfileElem}
+            {progressionElem}
+            {experienceElem}
+            {goalsElem}
             {editProfileBtn}
         </>
       );
