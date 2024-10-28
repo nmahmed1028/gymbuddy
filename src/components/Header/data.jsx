@@ -1,4 +1,6 @@
 import { FaBehance, FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
+/* This Module handles all the links data for the application.
+  All links are given an ID, url, and text that allows the application to change between different tabs*/
 export const linksLoggedIn = [
   {
     id: 1,

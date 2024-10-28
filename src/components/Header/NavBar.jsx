@@ -3,7 +3,13 @@ import { FaBars } from 'react-icons/fa';
 import { linksLoggedIn, linksLoggedOut, social } from './data';
 import { useAuth } from "../../hooks/AuthProvider";
 
-const Navbar = () => {
+/* This module implements the functionality and UI for the Navigation bar that
+  Appears at the top of the gym buddy application.
+  There are several set's of links as denoted in data.jsx
+  When logged out, the module shows the logged out links, when logged in the module shows logged in links
+  */
+
+const Navbar = () => { 
   const [showLinks, setShowLinks] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
@@ -19,7 +25,7 @@ const Navbar = () => {
 
   const user = useAuth().curUser;
   var links = (<ul></ul>);
-  if (!user)
+  if (!user) /* Determines which links to use, if user is invalid the logged out links will show */
   {
     links = (<ul className='links' ref={linksRef}>
         {linksLoggedOut.map((link) => {
