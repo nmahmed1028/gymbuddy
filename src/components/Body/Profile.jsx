@@ -4,13 +4,15 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/AuthProvider";
 
+/*
+    This component is a profile page where users can edit their profile information.
+ */
 const Profile = () => {
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
 
     const user = useAuth().curUser;
     const handleSubmit = async (event) => {
-        event.preventDefault();
         // Get data from input fields
         console.log('Name:', name);
         console.log('Username:', username);
@@ -57,6 +59,7 @@ const Profile = () => {
                     id="name"
                     value={name} // TODO lookup name
                     onChange={(e) => setName(e.target.value)}
+                    autocomplete="off"
                     />
                 </fieldset>
                 <fieldset className="mb-[15px] flex items-center gap-5">
@@ -75,6 +78,7 @@ const Profile = () => {
                             id="username"
                             value={username} // TODO lookup username
                             onChange={(e) => setUsername(e.target.value)}
+                            autocomplete="off"
                         />
                     </div>
                 </fieldset>
