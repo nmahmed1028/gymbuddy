@@ -43,3 +43,7 @@
 #   reviewText: String
 #   reviewDate: Date! @default(expr: "request.time")
 # }
+
+type User @table {
+    
+}
