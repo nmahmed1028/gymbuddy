@@ -121,6 +121,11 @@ const Profile = () => {
         </div>
     );
 
+    const calculateProgress = (goals) => {
+        const completedGoals = goals.filter(goal => goal.completed);
+        return (completedGoals.length / goals.length) * 100;
+    };
+
     const handleAddGoal = async () => {
         if (!newGoal.trim()) return;
         
@@ -283,6 +288,29 @@ const Profile = () => {
         }
     };
 
+    // Create a separate GoalItem component for cleaner code
+    const GoalItem = ({ goal, onToggle, onDelete }) => (
+        <div className="text-left bg-white rounded-md p-2 shadow-sm flex items-center justify-between">
+            <div className="flex items-center gap-2">
+                <input
+                    type="checkbox"
+                    checked={goal.completed}
+                    onChange={() => onToggle(goal.id, goal.completed)}
+                    className="w-4 h-4 rounded border-gray-300"
+                />
+                <p className={`text-black ${goal.completed ? 'line-through text-gray-500' : ''}`}>
+                    {goal.goal}
+                </p>
+            </div>
+            <button
+                onClick={() => onDelete(goal.id)}
+                className="bg-red-500 hover:bg-red-700 text-white text-xs px-2 py-1 rounded"
+            >
+                Delete
+            </button>
+        </div>
+    );
+
     // Update the goalsElem to include monthly goals
     const goalsElem = (
         <div style={{ marginTop: "5px" }}>
@@ -395,29 +423,6 @@ const Profile = () => {
                     </div>
                 </Box>
             </Inset>
-        </div>
-    );
-
-    // Create a separate GoalItem component for cleaner code
-    const GoalItem = ({ goal, onToggle, onDelete }) => (
-        <div className="text-left bg-white rounded-md p-2 shadow-sm flex items-center justify-between">
-            <div className="flex items-center gap-2">
-                <input
-                    type="checkbox"
-                    checked={goal.completed}
-                    onChange={() => onToggle(goal.id, goal.completed)}
-                    className="w-4 h-4 rounded border-gray-300"
-                />
-                <p className={`text-black ${goal.completed ? 'line-through text-gray-500' : ''}`}>
-                    {goal.goal}
-                </p>
-            </div>
-            <button
-                onClick={() => onDelete(goal.id)}
-                className="bg-red-500 hover:bg-red-700 text-white text-xs px-2 py-1 rounded"
-            >
-                Delete
-            </button>
         </div>
     );
 
