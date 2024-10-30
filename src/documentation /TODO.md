@@ -20,3 +20,5 @@
 
 ## Workout plan
 
+## profile 
+- [] Dietary restrictions Global variable
