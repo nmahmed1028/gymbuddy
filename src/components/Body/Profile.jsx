@@ -5,7 +5,7 @@ import { collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc } 
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/AuthProvider";
 import { Progress } from "@/components/ui/progress"
-import { UpsertUser } from "@firebasegen/default-connector"
+import { upsertUser } from "@firebasegen/default-connector"
 
 /*
     This component is a profile page where users can edit their profile information.
