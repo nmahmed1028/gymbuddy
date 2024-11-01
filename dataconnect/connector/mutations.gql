@@ -20,7 +20,7 @@ mutation UpsertUser($email: String!, $username: String!, $displayname: String) @
   user_upsert(
     data: {
       email: $email
-      id_expr: uuidV4()
+      id_expr: "uuidV4()"
       username: $username
       displayname: $displayname
     }
