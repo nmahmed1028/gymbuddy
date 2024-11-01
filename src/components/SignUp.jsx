@@ -24,7 +24,7 @@ const Signup = () => {
             console.log(user);
             navigate("/login")
             // ...
-            upsertUser({email: email, username: "username", displayname: "display name"});
+            upsertUser({email: email, username: email});
         })
         .catch((error) => {
             const errorCode = error.code;
