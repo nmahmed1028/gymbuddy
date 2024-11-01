@@ -15,15 +15,17 @@
 #   )
 # }
 
-# # Upsert (update or insert) a user's username based on their auth.uid
-# mutation UpsertUser($username: String!) @auth(level: USER) {
-#   user_upsert(
-#     data: {
-#       id_expr: "auth.uid"
-#       username: $username
-#     }
-#   )
-# }
+# Upsert (update or insert) a user's username based on their auth.uid
+mutation UpsertUser($email: String!, $username: String!, $displayname: String) @auth(level: USER) {
+  user_upsert(
+    data: {
+      email: $email
+      id_expr: uuidV4()
+      username: $username
+      displayname: $displayname
+    }
+  )
+}
 
 # # Add a review for a movie
 # mutation AddReview(
