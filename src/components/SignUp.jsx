@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
 import { auth } from '../firebase';
+import { upsertUser } from '@firebasegen/default-connector';
 
 /* This module handles the registration process for users
     The Signup function submits user provided detials to firebases user creation
@@ -23,6 +24,7 @@ const Signup = () => {
             console.log(user);
             navigate("/login")
             // ...
+            upsertUser({email: email, username: "username", displayname: "display name"});
         })
         .catch((error) => {
             const errorCode = error.code;
