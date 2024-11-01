@@ -93,14 +93,3 @@ extend type Mutation {
     all: Boolean = false
   ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
 }
-
-mutation UpsertUser($email: String!, $username: String!, $display_name: String) @auth(level: USER) {
-  user_upsert(
-    data: {
-      email: $email
-      id_expr: "auth.uid"
-      username: $username
-      displayname: $display_name
-    }
-  )
-}

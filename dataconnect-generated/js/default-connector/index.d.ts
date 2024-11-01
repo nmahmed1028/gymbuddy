@@ -11,5 +11,10 @@ export type DateString = string;
 
 
 
+export interface User_Key {
+  email: string;
+  __typename?: 'User_Key';
+}
+
 
 

@@ -44,6 +44,9 @@
 #   reviewDate: Date! @default(expr: "request.time")
 # }
 
-type User @table {
-    
+type User @table(name: "Users", singular: "user", plural: "users", key: ["email"]){
+    id: UUID! @col(name: "user_id") @default(expr: "uuidV4()")
+    email: String! @col(name: "email" dataType: "varchar(50)")
+    username: String! @col(name: "username" dataType: "varchar(50)")
+    displayname: String @col(name: "display_name" dataType: "varchar(50)")
 }
