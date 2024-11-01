@@ -16,5 +16,8 @@ Nayyir:
 
 Damien:
 
+# Group Meeting
+Nov 1 2024: 
+
 ## Ideas: 
     if we all agree on ideas then we move them to the TODOs
