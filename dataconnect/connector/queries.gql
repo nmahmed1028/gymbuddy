@@ -37,6 +37,15 @@
 #   }
 # }
 
+query GetUserByEmail($keyEmail: String!) @auth(level: PUBLIC) {
+    user(key: {email: $keyEmail}){
+        email
+        id
+        username
+        displayname
+    }
+}
+
 # # Get movie by id
 # query GetMovieById($id: UUID!) @auth(level: PUBLIC) {
 #   movie(id: $id) {

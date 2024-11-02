@@ -5,7 +5,7 @@ import { collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc } 
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/AuthProvider";
 import { Progress } from "@/components/ui/progress"
-import { upsertUser } from "@firebasegen/default-connector"
+import { upsertUser, getUserByEmail } from "@firebasegen/default-connector"
 
 /*
     This component is a profile page where users can edit their profile information.
@@ -26,6 +26,8 @@ const Profile = () => {
     const usersName = "@johndoe"; // TODO lookup username
     const email = user.email;
     const photoURL = "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"; // TODO lookup photoURL
+    const new_user = getUserByEmail({email: email}) /* Test Portion*/
+    console.log(new_user.username); /* Seeing if console would log but it isn't finding anythign*/
 
     const mainProfileElem = (
         <div style={{ marginTop: "30px" }}>
