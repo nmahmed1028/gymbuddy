@@ -1,0 +1,25 @@
+.WeeklyView {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.DaySummary {
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.DayDetails {
+    margin-top: 20px;
+}
+
+.ExerciseForm input {
+    margin: 5px;
+    padding: 8px;
+}
+
+.ExerciseForm button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
