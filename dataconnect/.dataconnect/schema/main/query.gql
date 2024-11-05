@@ -14,6 +14,20 @@ extend type Query {
     first: User_FirstRow
   ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
   """
+  ✨ Look up a single `UserGoals` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  userGoals(
+    """
+    The key used to identify the object.
+    """
+    key: UserGoals_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserGoals_FirstRow
+  ): UserGoals @fdc_generated(from: "UserGoals", purpose: QUERY_SINGLE)
+  """
   ✨ List `User` objects in the table, optionally filtered by `where` conditions.
   """
   users(
@@ -37,4 +51,28 @@ extend type Query {
     """
     limit: Int = 100
   ): [User!]! @fdc_generated(from: "User", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `UserGoals` objects in the table, optionally filtered by `where` conditions.
+  """
+  userGoalss(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserGoals_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserGoals_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [UserGoals!]! @fdc_generated(from: "UserGoals", purpose: QUERY_MULTIPLE)
 }

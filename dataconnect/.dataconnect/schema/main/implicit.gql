@@ -1,0 +1,6 @@
+extend type UserGoals {
+  """
+  ✨ Implicit foreign key field based on `UserGoals`.`user`. It must match the value of `User`.`email`. See `@ref` for how to customize it.
+  """
+  userEmail: String! @fdc_generated(from: "UserGoals.user", purpose: IMPLICIT_REF_FIELD)
+}

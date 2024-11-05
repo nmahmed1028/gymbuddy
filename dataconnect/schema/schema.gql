@@ -50,3 +50,11 @@ type User @table(name: "Users", singular: "user", plural: "users", key: ["email"
     username: String! @col(name: "username" dataType: "varchar(50)")
     displayname: String @col(name: "display_name" dataType: "varchar(50)")
 }
+
+type UserGoals @table(name: "userGoals", key: ["user"]){
+    id: UUID! @col(name: "user_goals_id") @default(expr: "uuidV4()")
+    user: User! @ref
+    goalType: String!
+    goalText: String
+    goalPoints: Int!
+}

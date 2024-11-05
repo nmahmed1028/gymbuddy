@@ -5,6 +5,12 @@ It has the same format as `User_Key`, but is only used as mutation return value.
 """
 scalar User_KeyOutput
 """
+✨ `UserGoals_KeyOutput` returns the primary key fields of table type `UserGoals`.
+
+It has the same format as `UserGoals_Key`, but is only used as mutation return value.
+"""
+scalar UserGoals_KeyOutput
+"""
 ✨ Generated data input type for table 'User'. It includes all necessary fields for creating or upserting rows into table.
 """
 input User_Data {
@@ -73,6 +79,10 @@ input User_Filter {
   ✨ Generated from Field `User`.`username` of type `String!`
   """
   username: String_Filter
+  """
+  ✨ Generated from Field `User`.`userGoals_on_user` of type `UserGoals`
+  """
+  userGoals_on_user: UserGoals_Filter
 }
 """
 ✨ Generated first-row input type for table 'User'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
@@ -133,4 +143,158 @@ input User_Order {
   ✨ Generated from Field `User`.`username` of type `String!`
   """
   username: OrderDirection
+}
+"""
+✨ Generated data input type for table 'UserGoals'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input UserGoals_Data {
+  """
+  ✨ Generated from Field `UserGoals`.`userEmail` of type `String!`
+  """
+  userEmail: String
+  """
+  ✨ `_expr` server value variant of `userEmail` (✨ Generated from Field `UserGoals`.`userEmail` of type `String!`)
+  """
+  userEmail_expr: String_Expr
+  """
+  ✨ Generated from Field `UserGoals`.`user` of type `User!`
+  """
+  user: User_Key
+  """
+  ✨ Generated from Field `UserGoals`.`goalPoints` of type `Int!`
+  """
+  goalPoints: Int
+  """
+  ✨ Generated from Field `UserGoals`.`goalText` of type `String`
+  """
+  goalText: String
+  """
+  ✨ `_expr` server value variant of `goalText` (✨ Generated from Field `UserGoals`.`goalText` of type `String`)
+  """
+  goalText_expr: String_Expr
+  """
+  ✨ Generated from Field `UserGoals`.`goalType` of type `String!`
+  """
+  goalType: String
+  """
+  ✨ `_expr` server value variant of `goalType` (✨ Generated from Field `UserGoals`.`goalType` of type `String!`)
+  """
+  goalType_expr: String_Expr
+  """
+  ✨ Generated from Field `UserGoals`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `UserGoals`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated filter input type for table 'UserGoals'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input UserGoals_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [UserGoals_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: UserGoals_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [UserGoals_Filter!]
+  """
+  ✨ Generated from Field `UserGoals`.`userEmail` of type `String!`
+  """
+  userEmail: String_Filter
+  """
+  ✨ Generated from Field `UserGoals`.`user` of type `User!`
+  """
+  user: User_Filter
+  """
+  ✨ Generated from Field `UserGoals`.`goalPoints` of type `Int!`
+  """
+  goalPoints: Int_Filter
+  """
+  ✨ Generated from Field `UserGoals`.`goalText` of type `String`
+  """
+  goalText: String_Filter
+  """
+  ✨ Generated from Field `UserGoals`.`goalType` of type `String!`
+  """
+  goalType: String_Filter
+  """
+  ✨ Generated from Field `UserGoals`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+}
+"""
+✨ Generated first-row input type for table 'UserGoals'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input UserGoals_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [UserGoals_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: UserGoals_Filter
+}
+"""
+✨ Generated key input type for table 'UserGoals'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input UserGoals_Key {
+  """
+  ✨ Generated from Field `UserGoals`.`userEmail` of type `String!`
+  """
+  userEmail: String
+  """
+  ✨ `_expr` server value variant of `userEmail` (✨ Generated from Field `UserGoals`.`userEmail` of type `String!`)
+  """
+  userEmail_expr: String_Expr
+}
+"""
+✨ Generated list filter input type for table 'UserGoals'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input UserGoals_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: UserGoals_Filter
+}
+"""
+✨ Generated order input type for table 'UserGoals'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input UserGoals_Order {
+  """
+  ✨ Generated from Field `UserGoals`.`userEmail` of type `String!`
+  """
+  userEmail: OrderDirection
+  """
+  ✨ Generated from Field `UserGoals`.`user` of type `User!`
+  """
+  user: User_Order
+  """
+  ✨ Generated from Field `UserGoals`.`goalPoints` of type `Int!`
+  """
+  goalPoints: OrderDirection
+  """
+  ✨ Generated from Field `UserGoals`.`goalText` of type `String`
+  """
+  goalText: OrderDirection
+  """
+  ✨ Generated from Field `UserGoals`.`goalType` of type `String!`
+  """
+  goalType: OrderDirection
+  """
+  ✨ Generated from Field `UserGoals`.`id` of type `UUID!`
+  """
+  id: OrderDirection
 }

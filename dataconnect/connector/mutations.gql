@@ -27,6 +27,16 @@ mutation UpsertUser($email: String!, $username: String!, $displayname: String) @
   )
 }
 
+mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $goalText: String){
+  userGoals_insert(
+    data: {
+      user : {email : $email}
+      goalType : $goalType
+      goalPoints : $goalPoints
+      goalText : $goalText
+    }
+  )
+}
 # # Add a review for a movie
 # mutation AddReview(
 #   $movieId: UUID!

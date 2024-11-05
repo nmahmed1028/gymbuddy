@@ -2,7 +2,7 @@
 
 ## Database section
 - [x] MUTATION: upload user (upsertUser())
-- [] QUERY: get userInfo {display name, username, email}
+- [x] QUERY: get userInfo {display name, username, email}
 
 - [] MUTATION: set userLevel {XP}
 - [] QUERY: get userLevel {XP}
