@@ -28,7 +28,7 @@ mutation UpsertUser($email: String!, $username: String!, $displayname: String) @
 }
 
 mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $goalText: String){
-  userGoals_insert(
+  userGoal_insert(
     data: {
       user : {email : $email}
       goalType : $goalType

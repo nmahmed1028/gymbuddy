@@ -1,6 +1,6 @@
 extend type User {
   """
-  ✨ List `UserGoals` objects in a one-to-one relationship (where `UserGoals`.`user` is this object).
+  ✨ List `UserGoal` objects in a one-to-one relationship (where `UserGoal`.`user` is this object).
   """
-  userGoals_on_user: UserGoals @fdc_generated(from: "UserGoals.user", purpose: QUERY_SINGLE_ONE_TO_ONE)
+  userGoal_on_user: UserGoal @fdc_generated(from: "UserGoal.user", purpose: QUERY_SINGLE_ONE_TO_ONE)
 }

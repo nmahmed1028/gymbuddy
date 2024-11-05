@@ -14,19 +14,19 @@ extend type Query {
     first: User_FirstRow
   ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
   """
-  ✨ Look up a single `UserGoals` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  ✨ Look up a single `UserGoal` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
   """
-  userGoals(
+  userGoal(
     """
     The key used to identify the object.
     """
-    key: UserGoals_Key
+    key: UserGoal_Key
 
     """
     Fetch the first row based on the filters and ordering.
     """
-    first: UserGoals_FirstRow
-  ): UserGoals @fdc_generated(from: "UserGoals", purpose: QUERY_SINGLE)
+    first: UserGoal_FirstRow
+  ): UserGoal @fdc_generated(from: "UserGoal", purpose: QUERY_SINGLE)
   """
   ✨ List `User` objects in the table, optionally filtered by `where` conditions.
   """
@@ -52,18 +52,18 @@ extend type Query {
     limit: Int = 100
   ): [User!]! @fdc_generated(from: "User", purpose: QUERY_MULTIPLE)
   """
-  ✨ List `UserGoals` objects in the table, optionally filtered by `where` conditions.
+  ✨ List `UserGoal` objects in the table, optionally filtered by `where` conditions.
   """
-  userGoalss(
+  userGoals(
     """
     Filter condition to narrow down the query results.
     """
-    where: UserGoals_Filter
+    where: UserGoal_Filter
 
     """
     Order the query results by specific fields.
     """
-    orderBy: [UserGoals_Order!]
+    orderBy: [UserGoal_Order!]
 
     """
     Number of rows to skip before starting to return the results.
@@ -74,5 +74,5 @@ extend type Query {
     Maximum number of rows to return (defaults to 100 rows).
     """
     limit: Int = 100
-  ): [UserGoals!]! @fdc_generated(from: "UserGoals", purpose: QUERY_MULTIPLE)
+  ): [UserGoal!]! @fdc_generated(from: "UserGoal", purpose: QUERY_MULTIPLE)
 }

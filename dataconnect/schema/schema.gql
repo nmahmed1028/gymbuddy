@@ -51,7 +51,7 @@ type User @table(name: "Users", singular: "user", plural: "users", key: ["email"
     displayname: String @col(name: "display_name" dataType: "varchar(50)")
 }
 
-type UserGoals @table(name: "userGoals", key: ["user"]){
+type UserGoal @table(name: "userGoals", key: ["user"]){
     id: UUID! @col(name: "user_goals_id") @default(expr: "uuidV4()")
     user: User! @ref
     goalType: String!

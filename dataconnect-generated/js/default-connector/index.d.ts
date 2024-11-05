@@ -12,7 +12,7 @@ export type DateString = string;
 
 
 export interface AddUserGoalData {
-  userGoals_insert: UserGoals_Key;
+  userGoal_insert: UserGoal_Key;
 }
 
 export interface AddUserGoalVariables {
@@ -35,6 +35,31 @@ export interface GetUserByEmailVariables {
   keyEmail: string;
 }
 
+export interface GetUserGoalsData {
+  dailyGoals: ({
+    id: UUIDString;
+    goalType: string;
+    goalText?: string | null;
+    goalPoints: number;
+  })[];
+    weeklyGoals: ({
+      id: UUIDString;
+      goalType: string;
+      goalText?: string | null;
+      goalPoints: number;
+    })[];
+      mothlyGoals: ({
+        id: UUIDString;
+        goalType: string;
+        goalText?: string | null;
+        goalPoints: number;
+      })[];
+}
+
+export interface GetUserGoalsVariables {
+  email: string;
+}
+
 export interface UpsertUserData {
   user_upsert: User_Key;
 }
@@ -45,9 +70,9 @@ export interface UpsertUserVariables {
   displayname?: string | null;
 }
 
-export interface UserGoals_Key {
+export interface UserGoal_Key {
   userEmail: string;
-  __typename?: 'UserGoals_Key';
+  __typename?: 'UserGoal_Key';
 }
 
 export interface User_Key {
@@ -55,15 +80,6 @@ export interface User_Key {
   __typename?: 'User_Key';
 }
 
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function getUserByEmailRef(vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData, GetUserByEmailVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function getUserByEmailRef(dc: DataConnect, vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData,GetUserByEmailVariables>;
-
-export function getUserByEmail(vars: GetUserByEmailVariables): QueryPromise<GetUserByEmailData, GetUserByEmailVariables>;
-export function getUserByEmail(dc: DataConnect, vars: GetUserByEmailVariables): QueryPromise<GetUserByEmailData,GetUserByEmailVariables>;
 
 
 /* Allow users to create refs without passing in DataConnect */
@@ -82,5 +98,23 @@ export function addUserGoalRef(dc: DataConnect, vars: AddUserGoalVariables): Mut
 
 export function addUserGoal(vars: AddUserGoalVariables): MutationPromise<AddUserGoalData, AddUserGoalVariables>;
 export function addUserGoal(dc: DataConnect, vars: AddUserGoalVariables): MutationPromise<AddUserGoalData,AddUserGoalVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getUserByEmailRef(vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData, GetUserByEmailVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getUserByEmailRef(dc: DataConnect, vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData,GetUserByEmailVariables>;
+
+export function getUserByEmail(vars: GetUserByEmailVariables): QueryPromise<GetUserByEmailData, GetUserByEmailVariables>;
+export function getUserByEmail(dc: DataConnect, vars: GetUserByEmailVariables): QueryPromise<GetUserByEmailData,GetUserByEmailVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getUserGoalsRef(vars: GetUserGoalsVariables): QueryRef<GetUserGoalsData, GetUserGoalsVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getUserGoalsRef(dc: DataConnect, vars: GetUserGoalsVariables): QueryRef<GetUserGoalsData,GetUserGoalsVariables>;
+
+export function getUserGoals(vars: GetUserGoalsVariables): QueryPromise<GetUserGoalsData, GetUserGoalsVariables>;
+export function getUserGoals(dc: DataConnect, vars: GetUserGoalsVariables): QueryPromise<GetUserGoalsData,GetUserGoalsVariables>;
 
 

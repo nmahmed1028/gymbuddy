@@ -47,22 +47,24 @@ query GetUserByEmail($keyEmail: String!) @auth(level: PUBLIC) {
 }
 
 query GetUserGoals($email: String!) @auth(level: PUBLIC) { 
-    users(where: { _and: [{email: {eq: $email}}, {goalType: {eq: "daily "}}]}){
-            id
+    dailyGoals: userGoals(
+        where: {
+        userEmail: {eq : $email}
+        goalType: {eq: "daily"}
+        }) {id goalType goalText goalPoints}
+    weeklyGoals: userGoals(
+        where: {
+        userEmail: {eq : $email}
+        goalType: {eq: "weekly"}
+        }) {id goalType goalText goalPoints}
+    mothlyGoals: userGoals(
+        where: {
+        userEmail: {eq : $email}
+        goalType: {eq: "monthly"}
+        }) {id goalType goalText goalPoints}
+
     }
-    weeklyGoals : userGoals_on_user (where: {goalType: {eq: "weekly"}}) {
-            id
-            goalType
-            goalPoins
-            goalText
-    }
-        mothlyGoals : userGoals_on_user (where: {goalType: {eq: "monthly"}}) {
-            id
-            goalType
-            goalPoints
-            goalText
-    }
-}
+
 
 # # Get movie by id
 # query GetMovieById($id: UUID!) @auth(level: PUBLIC) {

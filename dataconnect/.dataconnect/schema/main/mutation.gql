@@ -9,14 +9,14 @@ extend type Mutation {
     data: User_Data!
   ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
   """
-  ✨ Insert a single `UserGoals` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  ✨ Insert a single `UserGoal` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
-  userGoals_insert(
+  userGoal_insert(
     """
     Data object to insert into the table.
     """
-    data: UserGoals_Data!
-  ): UserGoals_KeyOutput! @fdc_generated(from: "UserGoals", purpose: INSERT_SINGLE)
+    data: UserGoal_Data!
+  ): UserGoal_KeyOutput! @fdc_generated(from: "UserGoal", purpose: INSERT_SINGLE)
   """
   ✨ Insert `User` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
@@ -27,14 +27,14 @@ extend type Mutation {
     data: [User_Data!]!
   ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
   """
-  ✨ Insert `UserGoals` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  ✨ Insert `UserGoal` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
-  userGoals_insertMany(
+  userGoal_insertMany(
     """
     List of data objects to insert into the table.
     """
-    data: [UserGoals_Data!]!
-  ): [UserGoals_KeyOutput!]! @fdc_generated(from: "UserGoals", purpose: INSERT_MULTIPLE)
+    data: [UserGoal_Data!]!
+  ): [UserGoal_KeyOutput!]! @fdc_generated(from: "UserGoal", purpose: INSERT_MULTIPLE)
   """
   ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted `User`.
   """
@@ -45,14 +45,14 @@ extend type Mutation {
     data: User_Data!
   ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
   """
-  ✨ Insert or update a single `UserGoals` into the table, based on the primary key. Returns the key of the newly inserted `UserGoals`.
+  ✨ Insert or update a single `UserGoal` into the table, based on the primary key. Returns the key of the newly inserted `UserGoal`.
   """
-  userGoals_upsert(
+  userGoal_upsert(
     """
     Data object to insert or update if it already exists.
     """
-    data: UserGoals_Data!
-  ): UserGoals_KeyOutput! @fdc_generated(from: "UserGoals", purpose: UPSERT_SINGLE)
+    data: UserGoal_Data!
+  ): UserGoal_KeyOutput! @fdc_generated(from: "UserGoal", purpose: UPSERT_SINGLE)
   """
   ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted `User`.
   """
@@ -63,14 +63,14 @@ extend type Mutation {
     data: [User_Data!]!
   ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
   """
-  ✨ Insert or update `UserGoals` objects into the table, based on the primary key. Returns the key of the newly inserted `UserGoals`.
+  ✨ Insert or update `UserGoal` objects into the table, based on the primary key. Returns the key of the newly inserted `UserGoal`.
   """
-  userGoals_upsertMany(
+  userGoal_upsertMany(
     """
     List of data objects to insert or update if it already exists.
     """
-    data: [UserGoals_Data!]!
-  ): [UserGoals_KeyOutput!]! @fdc_generated(from: "UserGoals", purpose: UPSERT_MULTIPLE)
+    data: [UserGoal_Data!]!
+  ): [UserGoal_KeyOutput!]! @fdc_generated(from: "UserGoal", purpose: UPSERT_MULTIPLE)
   """
   ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
   """
@@ -91,24 +91,24 @@ extend type Mutation {
     data: User_Data!
   ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
   """
-  ✨ Update a single `UserGoals` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  ✨ Update a single `UserGoal` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
   """
-  userGoals_update(
+  userGoal_update(
     """
     The key used to identify the object.
     """
-    key: UserGoals_Key
+    key: UserGoal_Key
 
     """
     Fetch the first row based on the filters and ordering.
     """
-    first: UserGoals_FirstRow
+    first: UserGoal_FirstRow
 
     """
     Data object containing fields to be updated.
     """
-    data: UserGoals_Data!
-  ): UserGoals_KeyOutput @fdc_generated(from: "UserGoals", purpose: UPDATE_SINGLE)
+    data: UserGoal_Data!
+  ): UserGoal_KeyOutput @fdc_generated(from: "UserGoal", purpose: UPDATE_SINGLE)
   """
   ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
@@ -129,13 +129,13 @@ extend type Mutation {
     data: User_Data!
   ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
   """
-  ✨ Update `UserGoals` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  ✨ Update `UserGoal` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
-  userGoals_updateMany(
+  userGoal_updateMany(
     """
     Filter condition to specify which rows to update.
     """
-    where: UserGoals_Filter
+    where: UserGoal_Filter
 
     """
     Set to true to update all rows.
@@ -145,8 +145,8 @@ extend type Mutation {
     """
     Data object containing fields to update.
     """
-    data: UserGoals_Data!
-  ): Int! @fdc_generated(from: "UserGoals", purpose: UPDATE_MULTIPLE)
+    data: UserGoal_Data!
+  ): Int! @fdc_generated(from: "UserGoal", purpose: UPDATE_MULTIPLE)
   """
   ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
@@ -162,19 +162,19 @@ extend type Mutation {
     first: User_FirstRow
   ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
   """
-  ✨ Delete a single `UserGoals` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  ✨ Delete a single `UserGoal` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
-  userGoals_delete(
+  userGoal_delete(
     """
     The key used to identify the object.
     """
-    key: UserGoals_Key
+    key: UserGoal_Key
 
     """
     Fetch the first row based on the filters and ordering.
     """
-    first: UserGoals_FirstRow
-  ): UserGoals_KeyOutput @fdc_generated(from: "UserGoals", purpose: DELETE_SINGLE)
+    first: UserGoal_FirstRow
+  ): UserGoal_KeyOutput @fdc_generated(from: "UserGoal", purpose: DELETE_SINGLE)
   """
   ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """
@@ -190,17 +190,17 @@ extend type Mutation {
     all: Boolean = false
   ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
   """
-  ✨ Delete `UserGoals` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  ✨ Delete `UserGoal` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """
-  userGoals_deleteMany(
+  userGoal_deleteMany(
     """
     Filter condition to specify which rows to delete.
     """
-    where: UserGoals_Filter
+    where: UserGoal_Filter
 
     """
     Set to true to delete all rows.
     """
     all: Boolean = false
-  ): Int! @fdc_generated(from: "UserGoals", purpose: DELETE_MULTIPLE)
+  ): Int! @fdc_generated(from: "UserGoal", purpose: DELETE_MULTIPLE)
 }
