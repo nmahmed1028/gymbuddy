@@ -34,6 +34,7 @@ mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $go
       goalType : $goalType
       goalPoints : $goalPoints
       goalText : $goalText
+      completed: true
     }
   )
 }

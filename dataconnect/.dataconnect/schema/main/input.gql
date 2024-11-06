@@ -161,6 +161,10 @@ input UserGoal_Data {
   """
   user: User_Key
   """
+  ✨ Generated from Field `UserGoal`.`completed` of type `Boolean!`
+  """
+  completed: Boolean
+  """
   ✨ Generated from Field `UserGoal`.`goalPoints` of type `Int!`
   """
   goalPoints: Int
@@ -213,6 +217,10 @@ input UserGoal_Filter {
   ✨ Generated from Field `UserGoal`.`user` of type `User!`
   """
   user: User_Filter
+  """
+  ✨ Generated from Field `UserGoal`.`completed` of type `Boolean!`
+  """
+  completed: Boolean_Filter
   """
   ✨ Generated from Field `UserGoal`.`goalPoints` of type `Int!`
   """
@@ -281,6 +289,10 @@ input UserGoal_Order {
   ✨ Generated from Field `UserGoal`.`user` of type `User!`
   """
   user: User_Order
+  """
+  ✨ Generated from Field `UserGoal`.`completed` of type `Boolean!`
+  """
+  completed: OrderDirection
   """
   ✨ Generated from Field `UserGoal`.`goalPoints` of type `Int!`
   """

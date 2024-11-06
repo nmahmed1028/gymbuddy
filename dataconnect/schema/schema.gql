@@ -57,4 +57,5 @@ type UserGoal @table(name: "userGoals", key: ["user"]){
     goalType: String!
     goalText: String
     goalPoints: Int!
+    completed: Boolean!
 }
