@@ -68,7 +68,7 @@ const Profile = () => {
                             <Text as="p" size="4" color='blue'>
                                 <Strong>{"@" + username}</Strong>
                             </Text>
-                            <Text as="p" size="4">
+                            <Text as="p" size="4" style={{ lineHeight: '1.3' }}>
                                 <Strong>{email}</Strong>
                             </Text>
                         </Grid>
