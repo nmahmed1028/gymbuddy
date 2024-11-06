@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Box, Card, Inset, Text, Strong, Flex, Grid } from "@radix-ui/themes";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore"; 
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/AuthProvider";
@@ -11,22 +11,40 @@ import { upsertUser, getUserByEmail } from "@firebasegen/default-connector"
     This component is a profile page where users can edit their profile information.
  */
 const Profile = () => {
-    const [name, setName] = useState('');
+    /* State variables */
+    // User info
+    const [displayName, setDisplayName] = useState('');
     const [username, setUsername] = useState('');
+    const usernameRef = useRef(null);
+    const nameRef = useRef(null);
+    // Goals
     const [goals, setGoals] = useState([]); // Add this state for goals
     const [newGoal, setNewGoal] = useState('');
     const [goalType, setGoalType] = useState('daily'); // 'daily', 'weekly', or 'monthly'
+    // User progress
     const [progress, setProgress] = useState(0);
     const [level, setLevel] = useState(1);
     const [totalPoints, setTotalPoints] = useState(0);
 
+    /* Get user info */
+    // First get reference to the current user
     const user = useAuth().curUser;
-
-    const displayName = "John Doe"; // TODO lookup name
-    const usersName = "@johndoe"; // TODO lookup username
     const email = user.email;
+    // Query user info from DB
+    useEffect(() => { // wrap in useEffect to avoid query at every re-render
+        getUserByEmail({keyEmail: email}).then((data) => { /* This works, must user email as key */
+            console.log("Got user info: ", data.data.user);
+            if (data.data.user === null) { // If user does not exist, create user
+                setDisplayName('');
+                setUsername(email);
+                upsertUser({email: email, username: email});
+            }
+            setDisplayName(data.data.user.displayname);
+            setUsername(data.data.user.username);
+        });
+    }, [user]);
+
     const photoURL = "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"; // TODO lookup photoURL
-    const new_user = getUserByEmail({keyEmail: email}) /* This Works, must use keyEmail: Input Email for it to work*/
 
     const mainProfileElem = (
         <div style={{ marginTop: "30px" }}>
@@ -48,7 +66,7 @@ const Profile = () => {
                                 <Strong>{displayName}</Strong>
                             </Text>
                             <Text as="p" size="4" color='blue'>
-                                <Strong>{usersName}</Strong>
+                                <Strong>{"@" + username}</Strong>
                             </Text>
                             <Text as="p" size="4">
                                 <Strong>{email}</Strong>
@@ -430,18 +448,32 @@ const Profile = () => {
 
     const handleSubmitEditProfile = async (event) => {
         // Get data from input fields
-        console.log('Name:', name);
-        console.log('Username:', username);
+        var updatedUsername = usernameRef.current.value;
+        if (updatedUsername === '') {
+            updatedUsername = email;
+        }
+        
+        var updatedName = nameRef.current.value;
+        if (updatedName === '') {
+            updatedName = null;
+        }
+
+        // Print updated user info
+        console.log('Name:', updatedName);
+        console.log('Username:', updatedUsername);
         console.log('Email:', user.email);
+
         try {
-            const docRef = await addDoc(collection(db, "users"), {
-                email: user.email,
-                name: name,
-                username: username
+            upsertUser({email: email, username: updatedUsername, displayname: updatedName}).then(() => {;
+                console.log('Completed upsert');
+                setDisplayName(updatedName);
+                setUsername(updatedUsername);
             });
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
+        }
+        catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
         }
     };
 
@@ -471,11 +503,11 @@ const Profile = () => {
                     Name
                     </label>
                     <input
-                    className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] bg-gray-800"
-                    id="name"
-                    value={name} // TODO lookup name
-                    onChange={(e) => setName(e.target.value)}
-                    autoComplete="off"
+                        className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] bg-gray-800"
+                        id="name"
+                        defaultValue={displayName}
+                        autoComplete="off"
+                        ref={nameRef}
                     />
                 </fieldset>
                 <fieldset className="mb-[15px] flex items-center gap-5">
@@ -492,9 +524,9 @@ const Profile = () => {
                         <input
                             className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-r-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]  bg-gray-800"
                             id="username"
-                            value={username} // TODO lookup username
-                            onChange={(e) => setUsername(e.target.value)}
+                            defaultValue={username}
                             autoComplete="off"
+                            ref={usernameRef}
                         />
                     </div>
                 </fieldset>
