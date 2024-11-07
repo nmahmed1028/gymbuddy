@@ -1,25 +1,61 @@
-.WeeklyView {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
+input {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 8px;
 }
 
-.DaySummary {
-    width: 100px;
-    text-align: center;
+input::placeholder {
+    color: #aaa;
+}
+
+div, button, hr {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+}
+
+.Workout {
+    padding: 20px;
+}
+
+.WeeklyView {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.DayCard {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+}
+
+.DayCard:hover{
+    background-color: #e0e0e0;
 }
 
 .DayDetails {
-    margin-top: 20px;
+    padding: 20px;
 }
 
-.ExerciseForm input {
-    margin: 5px;
-    padding: 8px;
+.AddExercise {
+    display: flex;
+    flex-direction: column;
 }
 
-.ExerciseForm button {
-    padding: 8px 12px;
+.AddExercise input {
+    margin: 5px 0;
+}
+
+.AddExercise button {
+    margin-top: 10px;
+    padding: 5px;
     cursor: pointer;
 }

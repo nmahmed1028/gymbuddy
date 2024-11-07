@@ -28,13 +28,13 @@ DAY VIEW
 
 export default function Workout() {
     const [weeklyPlan, setWeekly] = useState({
-        Monday: {day: "back", location: "Planet Fitness,", time: "10:30 A.M. - 12 P.M.", exercises: []},
-        Tuesday: {day: "back", location: "Planet Fitness,", time: "10:30 A.M. - 12 P.M.", exercises: []},
-        Wednesday: {day: "back", location: "Planet Fitness,", time: "10:30 A.M. - 12 P.M.", exercises: []},
-        Thursday: {day: "back", location: "Planet Fitness,", time: "10:30 A.M. - 12 P.M.", exercises: []},
-        Friday: {day: "back", location: "Planet Fitness,", time: "10:30 A.M. - 12 P.M.", exercises: []},
-        Saturday: {day: "back", location: "Planet Fitness,", time: "10:30 A.M. - 12 P.M.", exercises: []},
-        Sunday: {day: "back", location: "Planet Fitness,", time: "10:30 A.M. - 12 P.M.", exercises: []},
+        Sunday: {day: "", location: "", time: "", exercises: []},
+        Monday: {day: "", location: "", time: "", exercises: []},
+        Tuesday: {day: "", location: "", time: "", exercises: []},
+        Wednesday: {day: "", location: "", time: "", exercises: []},
+        Thursday: {day: "", location: "", time: "", exercises: []},
+        Friday: {day: "", location: "", time: "", exercises: []},
+        Saturday: {day: "", location: "", time: "", exercises: []},
     });
 
     const [selectedDay, setSelected] = useState(null);
@@ -60,17 +60,17 @@ export default function Workout() {
     return (
         <div className = "Workout">
             <WeeklyView weeklyPlan = {weeklyPlan} onDaySelect = {handleDaySelect}/>
-            <Modal isOpen = {modalOpen} onRequestClose = {handleModalClose} contentLabel = "Day Details">
+            <Modal isOpen = {modalOpen} onRequestClose = {handleModalClose} contentLabel = "DayDetails">
                 {selectedDay && (
                     <DayDetails
-                    day = {selectedDay}
-                    details = {weeklyPlan[selectedDay]}
-                    onAddExercise = {handleAddExercise}
+                        day = {selectedDay}
+                        details = {weeklyPlan[selectedDay]}
+                        onAddExercise = {handleAddExercise}
                     />
                 )}
                 <button onClick = {handleModalClose}>Close</button>
             </Modal>
         </div>
-    )
+    );
 }
 
