@@ -1,4 +1,12 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
 import { Box, Card, Inset, Text, Strong, Flex, Grid } from "@radix-ui/themes";
 import { useState, useEffect, useRef } from "react";
 import { collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore"; 
@@ -6,6 +14,52 @@ import { db } from "../../firebase";
 import { useAuth } from "../../hooks/AuthProvider";
 import { Progress } from "@/components/ui/progress"
 import { upsertUser, getUserByEmail } from "@firebasegen/default-connector"
+  
+// Create map of locations
+// Postal abbreviations to full state names
+const stateAbrv = [
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"
+];
+const stateNames = [
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", 
+    "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", 
+    "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", 
+    "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", 
+    "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", 
+    "West Virginia", "Wisconsin", "Wyoming"
+];
+
+const stateMap = stateAbrv.reduce((map, abbr, index) => {
+    map[abbr] = stateNames[index];
+    return map;
+}, {});
+
+const stateDropdown = (
+    <DropdownMenu
+        style={{ height: "25px", width: "100%" }}
+        className="text-white shadow-violet7 inline-flex h-[35px] items-center justify-center rounded-l-[4px] px-[10px] text-[15px] leading-none bg-gray-800"
+    >
+        <DropdownMenuTrigger 
+            variant="success"
+            id="dropdown-basic"
+            className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] bg-gray-800"
+        > 
+            Select
+        </DropdownMenuTrigger> 
+  
+        <DropdownMenuContent
+            style={{ 
+                maxHeight: "200px", 
+                overflowY: "auto", 
+            }}> 
+
+            {stateAbrv.map((abbr, index) => (
+                <DropdownMenuItem key={index}>{stateAbrv[index]}</DropdownMenuItem>
+
+            ))}
+        </DropdownMenuContent>
+    </DropdownMenu>
+);
 
 /*
     This component is a profile page where users can edit their profile information.
@@ -15,8 +69,10 @@ const Profile = () => {
     // User info
     const [displayName, setDisplayName] = useState('');
     const [username, setUsername] = useState('');
+    const [location, setLocation] = useState('');
     const usernameRef = useRef(null);
     const nameRef = useRef(null);
+    const locationRef = useRef(null);
     // Goals
     const [goals, setGoals] = useState([]); // Add this state for goals
     const [newGoal, setNewGoal] = useState('');
@@ -68,11 +124,25 @@ const Profile = () => {
                             <Text as="p" size="4" color='blue'>
                                 <Strong>{"@" + username}</Strong>
                             </Text>
-                            <Text as="p" size="4">
+                            <Text as="p" size="4" style={{ lineHeight: '1.3' }}>
                                 <Strong>{email}</Strong>
                             </Text>
                         </Grid>
                     </Inset>
+                </Card>
+            </Box>
+        </div>
+    );
+
+    const userLocationElem = (
+        <div style={{ marginTop: "10px" }}>
+            <Box maxWidth="250px">
+                <Card size="2">
+                    <Grid align="center" columns="1" gap="1" p="3">
+                        <Text as="p" size="3">
+                            <Strong><i><b>No Location Set</b></i></Strong>
+                        </Text>
+                    </Grid>
                 </Card>
             </Box>
         </div>
@@ -530,6 +600,17 @@ const Profile = () => {
                         />
                     </div>
                 </fieldset>
+                <fieldset className="mb-[15px] flex items-center gap-5">
+                    <label
+                    className="text-violet11 w-[90px] text-right text-[15px]"
+                    htmlFor="username"
+                    >
+                    Location
+                    </label>
+                    <div className="flex items-center">
+                    {stateDropdown}
+                    </div>
+                </fieldset>
                 <div className="mt-[25px] flex justify-end">
                     <Dialog.Close asChild>
                     <button 
@@ -551,6 +632,7 @@ const Profile = () => {
     return (
         <>
             {mainProfileElem}
+            {userLocationElem}
             {progressionElem}
             {experienceElem}
             {goalsElem}
