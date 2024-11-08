@@ -7,11 +7,11 @@
 - [] MUTATION: set userLevel {XP}
 - [] QUERY: get userLevel {XP}
 
-- [] MUTATION: set userGoals
-- [] QUERY: get userGoals
+- [x] MUTATION: set userGoals //InsertUserGoals
+- [x] QUERY: get userGoals //Two queries, get completed and get uncompleted
 - [] QUERY: get preDefinedGoals
 
-- [] QUERY: get past workouts
+- [x] QUERY: get past workouts //Get completed usergoals
 
 ## Goals section
 - [] Add in goals that inspire consistency

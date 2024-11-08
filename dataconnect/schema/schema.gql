@@ -49,6 +49,7 @@ type User @table(name: "Users", singular: "user", plural: "users", key: ["email"
     email: String! @col(name: "email" dataType: "varchar(50)")
     username: String! @col(name: "username" dataType: "varchar(50)")
     displayname: String @col(name: "display_name" dataType: "varchar(50)")
+    weight: Int 
 }
 
 type UserGoal @table(name: "userGoals", key: ["user"]){
@@ -58,4 +59,13 @@ type UserGoal @table(name: "userGoals", key: ["user"]){
     goalText: String
     goalPoints: Int!
     completed: Boolean!
+}
+
+type UserProgress @table(name: "UserProgress", key: ["user"]) {
+    user: User! @ref
+    progress: Int! @col(name: "XP") @default(expr: 0)
+    dailyGoalsCompleted: Int! @default(expr: 0)
+    weeklyGoalsCompleted: Int! @default(expr: 0)
+    monthlyGoalsCompleted: Int! @default(expr: 0)
+    totalGoalsCompleted: Int! @default(expr: 0)
 }

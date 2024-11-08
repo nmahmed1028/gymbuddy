@@ -49,17 +49,31 @@ exports.getUserByEmail = function getUserByEmail(dcOrVars, vars) {
   return executeQuery(getUserByEmailRef(dcOrVars, vars));
 };
 
-function getUserGoalsRef(dcOrVars, vars) {
+function getUncompleteUserGoalsRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   if('_useGeneratedSdk' in dcInstance) {
     dcInstance._useGeneratedSdk();
   } else {
     console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
   }
-  return queryRef(dcInstance, 'GetUserGoals', inputVars);
+  return queryRef(dcInstance, 'GetUncompleteUserGoals', inputVars);
 }
-exports.getUserGoalsRef = getUserGoalsRef;
-exports.getUserGoals = function getUserGoals(dcOrVars, vars) {
-  return executeQuery(getUserGoalsRef(dcOrVars, vars));
+exports.getUncompleteUserGoalsRef = getUncompleteUserGoalsRef;
+exports.getUncompleteUserGoals = function getUncompleteUserGoals(dcOrVars, vars) {
+  return executeQuery(getUncompleteUserGoalsRef(dcOrVars, vars));
+};
+
+function getCompleteUserGoalsRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return queryRef(dcInstance, 'GetCompleteUserGoals', inputVars);
+}
+exports.getCompleteUserGoalsRef = getCompleteUserGoalsRef;
+exports.getCompleteUserGoals = function getCompleteUserGoals(dcOrVars, vars) {
+  return executeQuery(getCompleteUserGoalsRef(dcOrVars, vars));
 };
 
