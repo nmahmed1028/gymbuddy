@@ -8,24 +8,6 @@ import Modal from 'react-modal';
 import './Workout.css';
 
 
-/*---WORKOUT LOG STRUCTURE---
-WEEK VIEW
-    Days, blank initially w/ button to add info
-        button takes you to day view immediately
-    Basic info for days
-        Workout category
-        Best weight
-DAY VIEW
-    Workout category
-    Gym location
-    Time/duration
-    Exercise
-        number of sets
-        set info
-            weight * reps
-*/
-
-
 export default function Workout() {
     const [weeklyPlan, setWeekly] = useState({
         Sunday: {day: "", location: "", time: "", exercises: [], workoutType: ""},

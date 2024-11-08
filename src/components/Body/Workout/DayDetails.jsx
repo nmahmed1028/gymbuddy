@@ -41,7 +41,7 @@ export default function DayDetails({ day, details, onSaveChanges }) {
 
     return (
         <div className = "day-details">
-            <h2>{day} -</h2>
+            <h2>{day}</h2>
             <label>
                 Workout Type:
                 <input
