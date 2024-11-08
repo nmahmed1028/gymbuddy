@@ -28,13 +28,13 @@ DAY VIEW
 
 export default function Workout() {
     const [weeklyPlan, setWeekly] = useState({
-        Sunday: {day: "", location: "", time: "", exercises: []},
-        Monday: {day: "", location: "", time: "", exercises: []},
-        Tuesday: {day: "", location: "", time: "", exercises: []},
-        Wednesday: {day: "", location: "", time: "", exercises: []},
-        Thursday: {day: "", location: "", time: "", exercises: []},
-        Friday: {day: "", location: "", time: "", exercises: []},
-        Saturday: {day: "", location: "", time: "", exercises: []},
+        Sunday: {day: "", location: "", time: "", exercises: [], workoutType: ""},
+        Monday: {day: "", location: "", time: "", exercises: [], workoutType: ""},
+        Tuesday: {day: "", location: "", time: "", exercises: [], workoutType: ""},
+        Wednesday: {day: "", location: "", time: "", exercises: [], workoutType: ""},
+        Thursday: {day: "", location: "", time: "", exercises: [], workoutType: ""},
+        Friday: {day: "", location: "", time: "", exercises: [], workoutType: ""},
+        Saturday: {day: "", location: "", time: "", exercises: [], workoutType: ""},
     });
 
     const [selectedDay, setSelected] = useState(null);
@@ -47,28 +47,26 @@ export default function Workout() {
     
     const handleModalClose = () => setModalOpen(false);
 
-    const handleAddExercise = (day, exercise) => {
+    const handleSaveChanges = (day, dayDetails) => {
         setWeekly(prevPlan => ({
             ...prevPlan,
-            [day]: {
-                ...prevPlan[day],
-                exercises: [...prevPlan[day].exercises, exercise]
-            }
+            [day]: dayDetails
         }));
+        setModalOpen(false);
     };
 
     return (
         <div className = "Workout">
             <WeeklyView weeklyPlan = {weeklyPlan} onDaySelect = {handleDaySelect}/>
-            <Modal isOpen = {modalOpen} onRequestClose = {handleModalClose} contentLabel = "DayDetails">
+            <Modal isOpen = {modalOpen} onRequestClose = {handleModalClose} contentLabel = "Day Details">
                 {selectedDay && (
                     <DayDetails
                         day = {selectedDay}
                         details = {weeklyPlan[selectedDay]}
-                        onAddExercise = {handleAddExercise}
+                        onSaveChanges = {handleSaveChanges}
                     />
                 )}
-                <button onClick = {handleModalClose}>Close</button>
+                <button onClick = {handleModalClose} className = "close-button">Close</button>
             </Modal>
         </div>
     );
