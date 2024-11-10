@@ -7,7 +7,7 @@ import SignUp from './components/SignUp.jsx'
 import Logout from './components/Logout.jsx'
 import Profile from './components/Body/Profile'
 import Social from './components/Body/Social'
-import Nutrition from './components/Body/Nutrition'
+import Nutrition from './components/Body/Nutrition/Nutrition'
 import Workout from './components/Body/Workout/Workout'
 
 function App() {
