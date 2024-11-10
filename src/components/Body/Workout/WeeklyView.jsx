@@ -6,9 +6,15 @@ export default function WeeklyView({ weeklyPlan, onDaySelect }) {
             {Object.keys(weeklyPlan).map(day => (
                 <div key = {day} className = "day" onClick = {() => onDaySelect(day)}>
                     <h3>{day}</h3>
-                    <p>Day Category: {weeklyPlan[day].workoutType || "Not Set"}</p>
-                    <p>Location: {weeklyPlan[day].location}</p>
-                    <p>Time: {weeklyPlan[day].time}</p>
+                    {weeklyPlan[day].isRestDay ? (
+                        <p>REST DAY</p>
+                    ) : (
+                        <>
+                            <p>Day Category: {weeklyPlan[day].workoutType || "Not Set"}</p>
+                            <p>Location: {weeklyPlan[day].location}</p>
+                            <p>Time: {weeklyPlan[day].time}</p>
+                        </>
+                    )}
                 </div>
             ))}
         </div>

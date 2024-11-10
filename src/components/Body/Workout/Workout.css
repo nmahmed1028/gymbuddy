@@ -80,6 +80,28 @@
     color: #333;
 }
 
+.rest-day {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.rest-day input[type="checkbox"]{
+    width: 18px;
+    height: 18px;
+    accent-color: #4caf50;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 3px;
+    appearance: auto;
+}
+
+.rest-day label{
+    font-size: 1em;
+    color: #333;
+}
+
 /*Exercise*/
 .exercise {
     margin-top: 15px;
