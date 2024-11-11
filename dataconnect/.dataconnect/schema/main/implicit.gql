@@ -4,3 +4,9 @@ extend type UserGoal {
   """
   userEmail: String! @fdc_generated(from: "UserGoal.user", purpose: IMPLICIT_REF_FIELD)
 }
+extend type UserProgress {
+  """
+  ✨ Implicit foreign key field based on `UserProgress`.`user`. It must match the value of `User`.`email`. See `@ref` for how to customize it.
+  """
+  userEmail: String! @fdc_generated(from: "UserProgress.user", purpose: IMPLICIT_REF_FIELD)
+}

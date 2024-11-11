@@ -28,6 +28,20 @@ extend type Query {
     first: UserGoal_FirstRow
   ): UserGoal @fdc_generated(from: "UserGoal", purpose: QUERY_SINGLE)
   """
+  ✨ Look up a single `UserProgress` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  userProgress(
+    """
+    The key used to identify the object.
+    """
+    key: UserProgress_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserProgress_FirstRow
+  ): UserProgress @fdc_generated(from: "UserProgress", purpose: QUERY_SINGLE)
+  """
   ✨ List `User` objects in the table, optionally filtered by `where` conditions.
   """
   users(
@@ -75,4 +89,28 @@ extend type Query {
     """
     limit: Int = 100
   ): [UserGoal!]! @fdc_generated(from: "UserGoal", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `UserProgress` objects in the table, optionally filtered by `where` conditions.
+  """
+  userProgresses(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserProgress_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserProgress_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [UserProgress!]! @fdc_generated(from: "UserProgress", purpose: QUERY_MULTIPLE)
 }

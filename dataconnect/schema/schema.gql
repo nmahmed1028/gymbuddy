@@ -63,9 +63,9 @@ type UserGoal @table(name: "userGoals", key: ["user"]){
 
 type UserProgress @table(name: "UserProgress", key: ["user"]) {
     user: User! @ref
-    progress: Int! @col(name: "XP") @default(expr: 0)
-    dailyGoalsCompleted: Int! @default(expr: 0)
-    weeklyGoalsCompleted: Int! @default(expr: 0)
-    monthlyGoalsCompleted: Int! @default(expr: 0)
-    totalGoalsCompleted: Int! @default(expr: 0)
+    progress: Int! @col(name: "XP" dataType: "Int") @default(value: 0)
+    dailyGoalsCompleted: Int  @default(value: 0)
+    weeklyGoalsCompleted: Int  @default(value: 0)
+    monthlyGoalsCompleted: Int  @default(value: 0)
+    totalGoalsCompleted: Int  @default(value: 0)
 }

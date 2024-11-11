@@ -100,6 +100,11 @@ export interface UserGoal_Key {
   __typename?: 'UserGoal_Key';
 }
 
+export interface UserProgress_Key {
+  userEmail: string;
+  __typename?: 'UserProgress_Key';
+}
+
 export interface User_Key {
   email: string;
   __typename?: 'User_Key';

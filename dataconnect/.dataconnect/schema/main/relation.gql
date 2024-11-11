@@ -3,4 +3,8 @@ extend type User {
   ✨ List `UserGoal` objects in a one-to-one relationship (where `UserGoal`.`user` is this object).
   """
   userGoal_on_user: UserGoal @fdc_generated(from: "UserGoal.user", purpose: QUERY_SINGLE_ONE_TO_ONE)
+  """
+  ✨ List `UserProgress` objects in a one-to-one relationship (where `UserProgress`.`user` is this object).
+  """
+  userProgress_on_user: UserProgress @fdc_generated(from: "UserProgress.user", purpose: QUERY_SINGLE_ONE_TO_ONE)
 }

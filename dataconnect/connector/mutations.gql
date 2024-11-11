@@ -39,7 +39,6 @@ mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $go
   )
 }
 
-mutation Set
 # # Add a review for a movie
 # mutation AddReview(
 #   $movieId: UUID!
