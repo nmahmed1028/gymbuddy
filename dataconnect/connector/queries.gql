@@ -90,6 +90,18 @@ query GetCompleteUserGoals($email: String!) @auth(level: PUBLIC) {
 
     }
 
+query GetUserProgress($keyEmail: String!) @auth(level: PUBLIC) {
+    user(key: {email: $keyEmail}){
+        userProgress_on_user{
+            progress
+            dailyGoalsCompleted
+            weeklyGoalsCompleted
+            monthlyGoalsCompleted
+            totalGoalsCompleted
+            }
+    }
+}
+
 # # Get movie by id
 # query GetMovieById($id: UUID!) @auth(level: PUBLIC) {
 #   movie(id: $id) {

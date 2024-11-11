@@ -85,6 +85,22 @@ export interface GetUserByEmailVariables {
   keyEmail: string;
 }
 
+export interface GetUserProgressData {
+  user?: {
+    userProgress_on_user?: {
+      progress: number;
+      dailyGoalsCompleted?: number | null;
+      weeklyGoalsCompleted?: number | null;
+      monthlyGoalsCompleted?: number | null;
+      totalGoalsCompleted?: number | null;
+    };
+  };
+}
+
+export interface GetUserProgressVariables {
+  keyEmail: string;
+}
+
 export interface UpsertUserData {
   user_upsert: User_Key;
 }
@@ -155,5 +171,14 @@ export function getCompleteUserGoalsRef(dc: DataConnect, vars: GetCompleteUserGo
 
 export function getCompleteUserGoals(vars: GetCompleteUserGoalsVariables): QueryPromise<GetCompleteUserGoalsData, GetCompleteUserGoalsVariables>;
 export function getCompleteUserGoals(dc: DataConnect, vars: GetCompleteUserGoalsVariables): QueryPromise<GetCompleteUserGoalsData,GetCompleteUserGoalsVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getUserProgressRef(vars: GetUserProgressVariables): QueryRef<GetUserProgressData, GetUserProgressVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getUserProgressRef(dc: DataConnect, vars: GetUserProgressVariables): QueryRef<GetUserProgressData,GetUserProgressVariables>;
+
+export function getUserProgress(vars: GetUserProgressVariables): QueryPromise<GetUserProgressData, GetUserProgressVariables>;
+export function getUserProgress(dc: DataConnect, vars: GetUserProgressVariables): QueryPromise<GetUserProgressData,GetUserProgressVariables>;
 
 
