@@ -1,5 +1,7 @@
 // tailwind.config.js
-module.exports = {
+import tailwindcssAnimate from "tailwindcss-animate";
+
+export default  {
     darkMode: ['class'],
     content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   media: false,
@@ -57,5 +59,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 }
