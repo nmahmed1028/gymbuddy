@@ -39,6 +39,19 @@ mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $go
   )
 }
 
+mutation UpsertProgress($email: String!, $progress: Int, $dailyGoalsCompleted: Int, $weeklyGoalsCompleted: Int, $monthlyGoalsCompleted: Int, $totalGoalsCompleted: Int){
+  userProgress_upsert(
+    data:{
+      user : {email: $email}
+      progress: $progress
+      dailyGoalsCompleted: $dailyGoalsCompleted
+      weeklyGoalsCompleted: $weeklyGoalsCompleted
+      monthlyGoalsCompleted: $monthlyGoalsCompleted
+      totalGoalsCompleted: $totalGoalsCompleted
+    }
+  )
+}
+
 # # Add a review for a movie
 # mutation AddReview(
 #   $movieId: UUID!

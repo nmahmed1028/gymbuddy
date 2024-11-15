@@ -52,7 +52,7 @@ type User @table(name: "Users", singular: "user", plural: "users", key: ["email"
     weight: Int 
 }
 
-type UserGoal @table(name: "userGoals", key: ["user"]){
+type UserGoal @table(name: "userGoals", key: ["user","id"]){
     id: UUID! @col(name: "user_goals_id") @default(expr: "uuidV4()")
     user: User! @ref
     goalType: String!

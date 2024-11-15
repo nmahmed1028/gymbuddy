@@ -1,8 +1,28 @@
 extend type User {
   """
-  ✨ List `UserGoal` objects in a one-to-one relationship (where `UserGoal`.`user` is this object).
+  ✨ List `UserGoal` objects in a one-to-many relationship (where `UserGoal`.`user` is this object).
   """
-  userGoal_on_user: UserGoal @fdc_generated(from: "UserGoal.user", purpose: QUERY_SINGLE_ONE_TO_ONE)
+  userGoals_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserGoal_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserGoal_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [UserGoal!]! @fdc_generated(from: "UserGoal.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
   """
   ✨ List `UserProgress` objects in a one-to-one relationship (where `UserProgress`.`user` is this object).
   """

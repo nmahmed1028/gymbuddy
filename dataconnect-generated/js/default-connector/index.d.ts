@@ -101,6 +101,19 @@ export interface GetUserProgressVariables {
   keyEmail: string;
 }
 
+export interface UpsertProgressData {
+  userProgress_upsert: UserProgress_Key;
+}
+
+export interface UpsertProgressVariables {
+  email: string;
+  progress?: number | null;
+  dailyGoalsCompleted?: number | null;
+  weeklyGoalsCompleted?: number | null;
+  monthlyGoalsCompleted?: number | null;
+  totalGoalsCompleted?: number | null;
+}
+
 export interface UpsertUserData {
   user_upsert: User_Key;
 }
@@ -112,6 +125,7 @@ export interface UpsertUserVariables {
 }
 
 export interface UserGoal_Key {
+  id: UUIDString;
   userEmail: string;
   __typename?: 'UserGoal_Key';
 }
@@ -144,6 +158,15 @@ export function addUserGoalRef(dc: DataConnect, vars: AddUserGoalVariables): Mut
 
 export function addUserGoal(vars: AddUserGoalVariables): MutationPromise<AddUserGoalData, AddUserGoalVariables>;
 export function addUserGoal(dc: DataConnect, vars: AddUserGoalVariables): MutationPromise<AddUserGoalData,AddUserGoalVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function upsertProgressRef(vars: UpsertProgressVariables): MutationRef<UpsertProgressData, UpsertProgressVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function upsertProgressRef(dc: DataConnect, vars: UpsertProgressVariables): MutationRef<UpsertProgressData,UpsertProgressVariables>;
+
+export function upsertProgress(vars: UpsertProgressVariables): MutationPromise<UpsertProgressData, UpsertProgressVariables>;
+export function upsertProgress(dc: DataConnect, vars: UpsertProgressVariables): MutationPromise<UpsertProgressData,UpsertProgressVariables>;
 
 
 /* Allow users to create refs without passing in DataConnect */
