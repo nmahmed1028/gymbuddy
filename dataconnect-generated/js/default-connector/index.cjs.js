@@ -105,3 +105,17 @@ exports.getUserProgress = function getUserProgress(dcOrVars, vars) {
   return executeQuery(getUserProgressRef(dcOrVars, vars));
 };
 
+function getAllRecipesRef(dc) {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return queryRef(dcInstance, 'GetAllRecipes');
+}
+exports.getAllRecipesRef = getAllRecipesRef;
+exports.getAllRecipes = function getAllRecipes(dc) {
+  return executeQuery(getAllRecipesRef(dc));
+};
+

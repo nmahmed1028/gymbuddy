@@ -102,6 +102,12 @@ query GetUserProgress($keyEmail: String!) @auth(level: PUBLIC) {
     }
 }
 
+query GetAllRecipes {
+    recipes (orderBy : {calories: DESC}){
+        id name type calories instructions
+    }
+}
+
 # # Get movie by id
 # query GetMovieById($id: UUID!) @auth(level: PUBLIC) {
 #   movie(id: $id) {

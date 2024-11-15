@@ -69,3 +69,11 @@ type UserProgress @table(name: "UserProgress", key: ["user"]) {
     monthlyGoalsCompleted: Int  @default(value: 0)
     totalGoalsCompleted: Int  @default(value: 0)
 }
+
+type Recipe @table(name: "Meal", key: ["id"]){
+    id:UUID! @col(name: "meal_id") @default(expr: "uuidV4()")
+    name: String! @col(dataType: "varchar(30)")
+    type: String @col(dataType: "varchar(50)")
+    calories: Int @default(value: 0)
+    instructions: String
+}

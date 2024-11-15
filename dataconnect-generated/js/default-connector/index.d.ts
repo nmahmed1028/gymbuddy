@@ -22,6 +22,16 @@ export interface AddUserGoalVariables {
   goalText?: string | null;
 }
 
+export interface GetAllRecipesData {
+  recipes: ({
+    id: UUIDString;
+    name: string;
+    type?: string | null;
+    calories?: number | null;
+    instructions?: string | null;
+  } & Recipe_Key)[];
+}
+
 export interface GetCompleteUserGoalsData {
   dailyGoals: ({
     id: UUIDString;
@@ -99,6 +109,11 @@ export interface GetUserProgressData {
 
 export interface GetUserProgressVariables {
   keyEmail: string;
+}
+
+export interface Recipe_Key {
+  id: UUIDString;
+  __typename?: 'Recipe_Key';
 }
 
 export interface UpsertProgressData {
@@ -203,5 +218,13 @@ export function getUserProgressRef(dc: DataConnect, vars: GetUserProgressVariabl
 
 export function getUserProgress(vars: GetUserProgressVariables): QueryPromise<GetUserProgressData, GetUserProgressVariables>;
 export function getUserProgress(dc: DataConnect, vars: GetUserProgressVariables): QueryPromise<GetUserProgressData,GetUserProgressVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getAllRecipesRef(): QueryRef<GetAllRecipesData, undefined>;/* Allow users to pass in custom DataConnect instances */
+export function getAllRecipesRef(dc: DataConnect): QueryRef<GetAllRecipesData,undefined>;
+
+export function getAllRecipes(): QueryPromise<GetAllRecipesData, undefined>;
+export function getAllRecipes(dc: DataConnect): QueryPromise<GetAllRecipesData,undefined>;
 
 
