@@ -10,11 +10,13 @@ import {
 import { Box, Card, Inset, Text, Strong, Flex, Grid } from "@radix-ui/themes";
 import { useState, useEffect, useRef } from "react";
 import { collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore"; 
-import { db } from "../../firebase";
-import { useAuth } from "../../hooks/AuthProvider";
+import { db } from "../../../firebase";
+import { useAuth } from "../../../hooks/AuthProvider";
 import { Progress } from "@/components/ui/progress"
 import { upsertUser, getUserByEmail } from "@firebasegen/default-connector"
-  
+import { addUserGoal, getUncompleteUserGoals, getCompleteUserGoals } from "@firebasegen/default-connector";
+
+//Mapp///
 // Create map of locations
 // Postal abbreviations to full state names
 const stateAbrv = [
@@ -76,9 +78,9 @@ const Profile = () => {
     const nameRef = useRef(null);
     const locationRef = useRef(null);
     // Goals
-    const [goals, setGoals] = useState([]); // Add this state for goals
+    const [goals, setGoals] = useState([]);
     const [newGoal, setNewGoal] = useState('');
-    const [goalType, setGoalType] = useState('daily'); // 'daily', 'weekly', or 'monthly'
+    const [goalType, setGoalType] = useState('daily');
     // User progress
     const [progress, setProgress] = useState(0);
     const [level, setLevel] = useState(1);
@@ -89,18 +91,25 @@ const Profile = () => {
     const user = useAuth().curUser;
     const email = user.email;
     // Query user info from DB
-    useEffect(() => { // wrap in useEffect to avoid query at every re-render
-        getUserByEmail({keyEmail: email}).then((data) => { /* This works, must user email as key */
-            console.log("Got user info: ", data.data.user);
-            if (data.data.user === null) { // If user does not exist, create user
-                setDisplayName('');
-                setUsername(email);
-                upsertUser({email: email, username: email});
+    useEffect(() => {
+        const loadUserData = async () => {
+            try {
+                const userData = await getUserByEmail({ keyEmail: email });
+                if (userData.user) {
+                    setDisplayName(userData.user.displayname);
+                    setUsername(userData.user.username);
+                } else {
+                    await upsertUser({ email: email, username: email });
+                }
+                // Load user goals
+                const uncompletedGoals = await getUncompleteUserGoals({ email });
+                setGoals(uncompletedGoals.dailyGoals); // Assuming you want to load daily goals
+            } catch (error) {
+                console.error("Error loading user data: ", error);
             }
-            setDisplayName(data.data.user.displayname);
-            setUsername(data.data.user.username);
-        });
-    }, [user]);
+        };
+        loadUserData();
+    }, [email]);
 
     const photoURL = "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"; // TODO lookup photoURL
 
@@ -230,6 +239,8 @@ const Profile = () => {
                 createdAt: new Date(),
                 level: level // Save current level
             });
+
+            addUserGoal({email: email, goalType: goalType, goalPoints: 1})
             
             const updatedGoals = [...goals, { 
                 id: docRef.id, 
@@ -467,7 +478,7 @@ const Profile = () => {
                     <div className="mt-6">
                         <h3 className="text-lg font-semibold mb-2 text-left">Daily Goals</h3>
                         <div className="space-y-2">
-                            {goals
+                            {/* {goals
                                 .filter(goal => goal.type === 'daily')
                                 .map((goal, index) => (
                                     <GoalItem 
@@ -476,7 +487,7 @@ const Profile = () => {
                                         onToggle={handleToggleGoal}
                                         onDelete={handleDeleteGoal}
                                     />
-                                ))}
+                                ))} */}
                         </div>
                     </div>
 
@@ -484,7 +495,7 @@ const Profile = () => {
                     <div className="mt-6">
                         <h3 className="text-lg font-semibold mb-2 text-left">Weekly Goals</h3>
                         <div className="space-y-2">
-                            {goals
+                            {/* {goals
                                 .filter(goal => goal.type === 'weekly')
                                 .map((goal, index) => (
                                     <GoalItem 
@@ -493,7 +504,7 @@ const Profile = () => {
                                         onToggle={handleToggleGoal}
                                         onDelete={handleDeleteGoal}
                                     />
-                                ))}
+                                ))} */}
                         </div>
                     </div>
 
@@ -501,7 +512,7 @@ const Profile = () => {
                     <div className="mt-6">
                         <h3 className="text-lg font-semibold mb-2 text-left">Monthly Goals</h3>
                         <div className="space-y-2">
-                            {goals
+                            {/* {goals
                                 .filter(goal => goal.type === 'monthly')
                                 .map((goal, index) => (
                                     <GoalItem 
@@ -510,7 +521,7 @@ const Profile = () => {
                                         onToggle={handleToggleGoal}
                                         onDelete={handleDeleteGoal}
                                     />
-                                ))}
+                                ))} */}
                         </div>
                     </div>
                 </Box>
@@ -549,7 +560,7 @@ const Profile = () => {
                 email: email,
                 username: updatedUsername,
                 displayname: updatedName,
-                dietaryRestrictions: dietaryRestrictions // Save dietary restrictions
+                // dietaryRestrictions: dietaryRestrictions // Save dietary restrictions TODO : implement in DB
             });
             console.log('Profile updated successfully');
             setDisplayName(updatedName);
