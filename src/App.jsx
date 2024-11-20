@@ -9,6 +9,7 @@ import Profile from './components/Body/Profile/OGProfile.jsx' // TODO
 import Social from './components/Body/Social'
 import Nutrition from './components/Body/Nutrition/Nutrition'
 import Workout from './components/Body/Workout/Workout'
+import ChatWidget from './components/Footer/ChatWidget'
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
               <Route path="/workout" element={<Workout />} />
             </Route>
           </Routes>
+          <br/>
+          <ChatWidget />
         </AuthProvider>
       </Router>
     </div>
