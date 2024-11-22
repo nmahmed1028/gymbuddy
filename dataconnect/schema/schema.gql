@@ -61,6 +61,15 @@ type UserGoal @table(name: "userGoals", key: ["user","id"]){
     completed: Boolean!
 }
 
+type PresetGoal @table(name: "presetGoal", key: ["id"]){
+    id: UUID! @col(name: "user_goals_id") @default(expr: "uuidV4()")
+    lvlReq: Int! @col(name: "level_requirement")
+    goalType: String!
+    goalText: String
+    goalPoints: Int!
+    completed: Boolean!
+}
+
 type UserProgress @table(name: "UserProgress", key: ["user"]) {
     user: User! @ref
     progress: Int! @col(name: "XP" dataType: "Int") @default(value: 0)

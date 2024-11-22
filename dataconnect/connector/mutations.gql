@@ -39,6 +39,12 @@ mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $go
   )
 }
 
+"""
+How to upsert progress for a given user.
+First, query for user progress using the GetUserProgress query
+Then, take those values, modify them by adding the xp total, incrementing the goals, etc.
+Finally, call this mutation again with the updated values
+"""
 mutation UpsertProgress($email: String!, $progress: Int, $dailyGoalsCompleted: Int, $weeklyGoalsCompleted: Int, $monthlyGoalsCompleted: Int, $totalGoalsCompleted: Int){
   userProgress_upsert(
     data:{

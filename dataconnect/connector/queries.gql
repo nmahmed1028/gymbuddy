@@ -46,6 +46,26 @@ query GetUserByEmail($keyEmail: String!) @auth(level: PUBLIC) {
     }
 }
 
+""" 
+So heres the explanation on preset goals.
+
+The insert and update many stuff for graphQL isn't working for me, so instead here is the plan.
+We will fill up the PresetGoals table, and when a person levels up, we will query all the preset goals
+that match their level and for loop all of those into the AddUserGoal mutation to add the preset goals
+to the user profile.
+
+Sorry it is a lot to work around, but I am trying my best
+"""
+query GetPresetGoalsByLevel($lvlReq:Int!) @auth(level: PUBLIC) {
+    presetGoals(
+        where: {
+            lvlReq: {eq:$lvlReq}
+        }
+    ){
+       goalType goalText goalPoints 
+    }
+}
+
 query GetUncompleteUserGoals($email: String!) @auth(level: PUBLIC) { 
     dailyGoals: userGoals(
         where: {

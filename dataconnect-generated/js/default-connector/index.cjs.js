@@ -63,6 +63,20 @@ exports.getUserByEmail = function getUserByEmail(dcOrVars, vars) {
   return executeQuery(getUserByEmailRef(dcOrVars, vars));
 };
 
+function getPresetGoalsByLevelRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return queryRef(dcInstance, 'GetPresetGoalsByLevel', inputVars);
+}
+exports.getPresetGoalsByLevelRef = getPresetGoalsByLevelRef;
+exports.getPresetGoalsByLevel = function getPresetGoalsByLevel(dcOrVars, vars) {
+  return executeQuery(getPresetGoalsByLevelRef(dcOrVars, vars));
+};
+
 function getUncompleteUserGoalsRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   if('_useGeneratedSdk' in dcInstance) {

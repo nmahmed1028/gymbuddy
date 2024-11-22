@@ -1,5 +1,14 @@
 extend type Mutation {
   """
+  ✨ Insert a single `PresetGoal` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  presetGoal_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: PresetGoal_Data!
+  ): PresetGoal_KeyOutput! @fdc_generated(from: "PresetGoal", purpose: INSERT_SINGLE)
+  """
   ✨ Insert a single `Recipe` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   recipe_insert(
@@ -35,6 +44,15 @@ extend type Mutation {
     """
     data: UserProgress_Data!
   ): UserProgress_KeyOutput! @fdc_generated(from: "UserProgress", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `PresetGoal` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  presetGoal_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [PresetGoal_Data!]!
+  ): [PresetGoal_KeyOutput!]! @fdc_generated(from: "PresetGoal", purpose: INSERT_MULTIPLE)
   """
   ✨ Insert `Recipe` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
@@ -72,6 +90,15 @@ extend type Mutation {
     data: [UserProgress_Data!]!
   ): [UserProgress_KeyOutput!]! @fdc_generated(from: "UserProgress", purpose: INSERT_MULTIPLE)
   """
+  ✨ Insert or update a single `PresetGoal` into the table, based on the primary key. Returns the key of the newly inserted `PresetGoal`.
+  """
+  presetGoal_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: PresetGoal_Data!
+  ): PresetGoal_KeyOutput! @fdc_generated(from: "PresetGoal", purpose: UPSERT_SINGLE)
+  """
   ✨ Insert or update a single `Recipe` into the table, based on the primary key. Returns the key of the newly inserted `Recipe`.
   """
   recipe_upsert(
@@ -108,6 +135,15 @@ extend type Mutation {
     data: UserProgress_Data!
   ): UserProgress_KeyOutput! @fdc_generated(from: "UserProgress", purpose: UPSERT_SINGLE)
   """
+  ✨ Insert or update `PresetGoal` objects into the table, based on the primary key. Returns the key of the newly inserted `PresetGoal`.
+  """
+  presetGoal_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [PresetGoal_Data!]!
+  ): [PresetGoal_KeyOutput!]! @fdc_generated(from: "PresetGoal", purpose: UPSERT_MULTIPLE)
+  """
   ✨ Insert or update `Recipe` objects into the table, based on the primary key. Returns the key of the newly inserted `Recipe`.
   """
   recipe_upsertMany(
@@ -143,6 +179,30 @@ extend type Mutation {
     """
     data: [UserProgress_Data!]!
   ): [UserProgress_KeyOutput!]! @fdc_generated(from: "UserProgress", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `PresetGoal` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  presetGoal_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: PresetGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: PresetGoal_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: PresetGoal_Data!
+  ): PresetGoal_KeyOutput @fdc_generated(from: "PresetGoal", purpose: UPDATE_SINGLE)
   """
   ✨ Update a single `Recipe` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
   """
@@ -225,6 +285,25 @@ extend type Mutation {
     data: UserProgress_Data!
   ): UserProgress_KeyOutput @fdc_generated(from: "UserProgress", purpose: UPDATE_SINGLE)
   """
+  ✨ Update `PresetGoal` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  presetGoal_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: PresetGoal_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: PresetGoal_Data!
+  ): Int! @fdc_generated(from: "PresetGoal", purpose: UPDATE_MULTIPLE)
+  """
   ✨ Update `Recipe` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
   recipe_updateMany(
@@ -301,6 +380,25 @@ extend type Mutation {
     data: UserProgress_Data!
   ): Int! @fdc_generated(from: "UserProgress", purpose: UPDATE_MULTIPLE)
   """
+  ✨ Delete a single `PresetGoal` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  presetGoal_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: PresetGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: PresetGoal_FirstRow
+  ): PresetGoal_KeyOutput @fdc_generated(from: "PresetGoal", purpose: DELETE_SINGLE)
+  """
   ✨ Delete a single `Recipe` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
   recipe_delete(
@@ -361,6 +459,20 @@ extend type Mutation {
     """
     first: UserProgress_FirstRow
   ): UserProgress_KeyOutput @fdc_generated(from: "UserProgress", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `PresetGoal` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  presetGoal_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: PresetGoal_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "PresetGoal", purpose: DELETE_MULTIPLE)
   """
   ✨ Delete `Recipe` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """

@@ -57,6 +57,18 @@ export interface GetCompleteUserGoalsVariables {
   email: string;
 }
 
+export interface GetPresetGoalsByLevelData {
+  presetGoals: ({
+    goalType: string;
+    goalText?: string | null;
+    goalPoints: number;
+  })[];
+}
+
+export interface GetPresetGoalsByLevelVariables {
+  lvlReq: number;
+}
+
 export interface GetUncompleteUserGoalsData {
   dailyGoals: ({
     id: UUIDString;
@@ -109,6 +121,11 @@ export interface GetUserProgressData {
 
 export interface GetUserProgressVariables {
   keyEmail: string;
+}
+
+export interface PresetGoal_Key {
+  id: UUIDString;
+  __typename?: 'PresetGoal_Key';
 }
 
 export interface Recipe_Key {
@@ -191,6 +208,15 @@ export function getUserByEmailRef(dc: DataConnect, vars: GetUserByEmailVariables
 
 export function getUserByEmail(vars: GetUserByEmailVariables): QueryPromise<GetUserByEmailData, GetUserByEmailVariables>;
 export function getUserByEmail(dc: DataConnect, vars: GetUserByEmailVariables): QueryPromise<GetUserByEmailData,GetUserByEmailVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getPresetGoalsByLevelRef(vars: GetPresetGoalsByLevelVariables): QueryRef<GetPresetGoalsByLevelData, GetPresetGoalsByLevelVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getPresetGoalsByLevelRef(dc: DataConnect, vars: GetPresetGoalsByLevelVariables): QueryRef<GetPresetGoalsByLevelData,GetPresetGoalsByLevelVariables>;
+
+export function getPresetGoalsByLevel(vars: GetPresetGoalsByLevelVariables): QueryPromise<GetPresetGoalsByLevelData, GetPresetGoalsByLevelVariables>;
+export function getPresetGoalsByLevel(dc: DataConnect, vars: GetPresetGoalsByLevelVariables): QueryPromise<GetPresetGoalsByLevelData,GetPresetGoalsByLevelVariables>;
 
 
 /* Allow users to create refs without passing in DataConnect */

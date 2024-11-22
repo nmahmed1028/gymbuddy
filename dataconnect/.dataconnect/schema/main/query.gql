@@ -1,5 +1,24 @@
 extend type Query {
   """
+  ✨ Look up a single `PresetGoal` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  presetGoal(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: PresetGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: PresetGoal_FirstRow
+  ): PresetGoal @fdc_generated(from: "PresetGoal", purpose: QUERY_SINGLE)
+  """
   ✨ Look up a single `Recipe` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
   """
   recipe(
@@ -60,6 +79,30 @@ extend type Query {
     """
     first: UserProgress_FirstRow
   ): UserProgress @fdc_generated(from: "UserProgress", purpose: QUERY_SINGLE)
+  """
+  ✨ List `PresetGoal` objects in the table, optionally filtered by `where` conditions.
+  """
+  presetGoals(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: PresetGoal_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [PresetGoal_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [PresetGoal!]! @fdc_generated(from: "PresetGoal", purpose: QUERY_MULTIPLE)
   """
   ✨ List `Recipe` objects in the table, optionally filtered by `where` conditions.
   """
