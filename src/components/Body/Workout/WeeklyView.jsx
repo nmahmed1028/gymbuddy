@@ -10,9 +10,10 @@ export default function WeeklyView({ weeklyPlan, onDaySelect }) {
                         <p>REST DAY</p>
                     ) : (
                         <>
-                            <p>Day Category: {weeklyPlan[day].workoutType || "Not Set"}</p>
+                            <p>Day Category: {weeklyPlan[day].workoutType}</p>
                             <p>Location: {weeklyPlan[day].location}</p>
-                            <p>Time: {weeklyPlan[day].time}</p>
+                            <p>Start Time: {weeklyPlan[day].startTime}</p>
+                            <p>End Time: {weeklyPlan[day].endTime}</p>
                         </>
                     )}
                 </div>
