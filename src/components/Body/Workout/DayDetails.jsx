@@ -4,7 +4,8 @@ export default function DayDetails({ day, details, onSaveChanges }) {
     const [dayDetails, setDayDetails] = useState({
         day: details.day,
         location: details.location,
-        time: details.time,
+        startTime: details.startTime,
+        endTime: details.endTime,
         exercises: details.exercises,
         workoutType: details.workoutType || '',
         isRestDay: details.isRestDay || false,
@@ -79,15 +80,24 @@ export default function DayDetails({ day, details, onSaveChanges }) {
                             onChange = {(e) => handleInputChange("location", e.target.value)}
                         />
                     </label>
-                    <label>
-                        Time:
-                        <input 
-                            type = "text"
-                            value = {dayDetails.time}
-                            onChange = {(e) => handleInputChange("time", e.target.value)}
-                        />
-                    </label>
-
+                    <div className = "time-inputs">
+                        <label>
+                            Time:
+                            <input 
+                                type = "text"
+                                value = {dayDetails.startTime}
+                                onChange = {(e) => handleInputChange("startTime", e.target.value)}
+                                placeholder = "Start Time"
+                            />
+                            <span> - </span>
+                            <input 
+                                type = "text"
+                                value = {dayDetails.endTime}
+                                onChange = {(e) => handleInputChange("endTime", e.target.value)}
+                                placeholder = "End Time"
+                            />
+                        </label>
+                    </div>
                     <h3>Exercises</h3>
                     {dayDetails.exercises.map((exercise, index) => (
                         <div key = {index} className = "exercise">
