@@ -14,13 +14,10 @@ const Profile = () => {
     const [location, setLocation] = useState('');
     const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
     const [newDietaryRestriction, setNewDietaryRestriction] = useState('');
-    const [goals, setGoals] = useState([]);
-    const [newGoal, setNewGoal] = useState(''); // State for new goal input
     const email = useAuth().curUser.email;
 
     // Modal state
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [screenName, setScreenName] = useState('');
 
     // Load user data and goals
     useEffect(() => {
@@ -36,7 +33,7 @@ const Profile = () => {
                     await upsertUser({ email, username: email });
                 }
                 const uncompletedGoals = await getUncompleteUserGoals({ email });
-                setGoals(uncompletedGoals.dailyGoals);
+                // setGoals(uncompletedGoals.dailyGoals);
             } catch (error) {
                 console.error("Error loading user data:", error);
             }
@@ -58,14 +55,6 @@ const Profile = () => {
             setIsModalOpen(false); // Close the modal
         } catch (error) {
             console.error("Error updating profile: ", error);
-        }
-    };
-
-    // Function to handle adding a new goal
-    const handleAddGoal = async () => {
-        if (newGoal.trim()) {
-            setGoals([...goals, { goalText: newGoal, goalType: 'daily', completed: false }]);
-            setNewGoal(''); // Clear the input field
         }
     };
 
@@ -98,8 +87,8 @@ const Profile = () => {
                                 <input 
                                     type="text" 
                                     placeholder="Screen Name" 
-                                    value={screenName} 
-                                    onChange={(e) => setScreenName(e.target.value)} 
+                                    value={displayName} 
+                                    onChange={(e) => setDisplayName(e.target.value)} 
                                     className="mb-4" // Add margin-bottom for spacing
                                 />
                                 <input 
@@ -133,16 +122,8 @@ const Profile = () => {
                 </div>
 
                 <div className="flex flex-col w-1/2 pl-4"> {/* Right column for goals */}
-                    <h2 className="mt-4">Add a New Goal</h2> {/* Add margin-top for separation */}
-                    <input 
-                        value={newGoal} 
-                        onChange={(e) => setNewGoal(e.target.value)} 
-                        placeholder="Enter your goal" 
-                    />
-                    <button onClick={handleAddGoal}>Add Goal</button>
-
-                    {/* Goals Section */}
-                    <Goals email={email} goals={goals} setGoals={setGoals} />
+                    {/* Just render the Goals component */}
+                    <Goals email={email} />
                 </div>
             </div>
         </div>
