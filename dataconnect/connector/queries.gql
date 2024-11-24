@@ -127,6 +127,37 @@ query GetAllRecipes {
     }
 }
 
+query GetUserFriends($userId: UUID!) {
+    friends(filter: {OR: [{user1: {eq:$userId}}, {user2: {eq: $userId}}]}) {
+        user1 {
+            id
+            username
+        }
+        user2 {
+            id
+            username
+        }
+        status
+    }
+}
+
+query GetFriendActivities($userId: UUID!) {
+    friends(filter: {OR: [{user1: {eq: $userId}}, {user2: {eq: $userId}}]}) {
+        user1 {
+            id
+        }
+        user2 {
+            id
+        }
+    }
+    activities(filter: {userId: {in: [/*list of friend ids */]}}) {
+        id
+        userId
+        description
+        timestamp
+    }
+}
+
 # # Get movie by id
 # query GetMovieById($id: UUID!) @auth(level: PUBLIC) {
 #   movie(id: $id) {

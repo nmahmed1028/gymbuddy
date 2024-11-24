@@ -50,6 +50,15 @@ type User @table(name: "Users", singular: "user", plural: "users", key: ["email"
     username: String! @col(name: "username" dataType: "varchar(50)")
     displayname: String @col(name: "display_name" dataType: "varchar(50)")
     weight: Int 
+    #friends: [Friends]! @ref(name: "Friends", key: ["user1"])
+}
+
+type Friends @table(name: "Friends", key: ["user1", "user2"]) {
+    id: UUID! @col(name: "friendship_id") @default(expr: "uuidV4()")
+    user1: User! @ref
+    user2: User! @ref
+    status: String @default(value: "pending")
+    createdAt: String! @col(name: "created_at") @default(expr: "current_timestamp") #FIX THIS
 }
 
 type UserGoal @table(name: "userGoals", key: ["user","id"]){

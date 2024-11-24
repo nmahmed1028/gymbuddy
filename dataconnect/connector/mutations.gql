@@ -58,6 +58,40 @@ mutation UpsertProgress($email: String!, $progress: Int, $dailyGoalsCompleted: I
   )
 }
 
+mutation AddFriend($userId: UUID!, $friendId: UUID!) {
+  createFriend(data: {
+    user1: $userId,
+    user2: $friendId,
+    status: "pending"
+  }) {
+    id
+    user1 {
+      id
+      username
+    }
+    user2 {
+      id
+      username
+    }
+    status
+    createdAt
+  }
+}
+
+mutation AcceptFriendRequest($userId: UUID!, $friendId: UUID!) {
+  updateFriend(filter: {
+    OR: [
+      {user1: {eq: $userId}, user2: {eq: $friendId}},
+      {user1: {eq: $friendId}, user2: {eq: $userId}}
+    ]
+  }, data: {
+    status: "accepted"
+  }) {
+    id
+    status
+  }
+}
+
 # # Add a review for a movie
 # mutation AddReview(
 #   $movieId: UUID!
