@@ -116,34 +116,26 @@ const Goals = () => {
 
     const handleToggleGoal = async (goalId, currentStatus) => {
         try {
+            // Update in Firestore
             const goalRef = doc(db, "goals", goalId);
             await updateDoc(goalRef, {
                 completed: !currentStatus
             });
 
-            const goal = goals.find(g => g.id === goalId);
-            const pointValue = goal.type === 'daily' ? 5 : 
-                             goal.type === 'weekly' ? 10 : 
-                             20;
-            
-            const pointChange = !currentStatus ? pointValue : -pointValue;
-            const newTotalPoints = totalPoints + pointChange;
-            
-            const updatedGoals = goals.map(goal => 
-                goal.id === goalId 
-                    ? { ...goal, completed: !goal.completed }
-                    : goal
+            // Update local state
+            setGoals(prevGoals => 
+                prevGoals.map(goal => 
+                    goal.id === goalId 
+                        ? { ...goal, completed: !goal.completed }
+                        : goal
+                )
             );
-            setGoals(updatedGoals);
-            
-            setTotalPoints(newTotalPoints);
-            const { level: newLevel, progressPercentage } = calculateLevelAndProgress(newTotalPoints);
-            setLevel(newLevel);
-            setProgress(progressPercentage);
-            
-            await updateUserProgress(newTotalPoints);
-        } catch (e) {
-            console.error("Error updating goal: ", e);
+
+            // Optional: Add a success message
+            console.log(`Goal ${!currentStatus ? 'completed' : 'uncompleted'} successfully`);
+        } catch (error) {
+            console.error("Error updating goal:", error);
+            alert('Failed to update goal status');
         }
     };
 
@@ -257,21 +249,34 @@ const Goals = () => {
                         </h3>
                         <div className="space-y-2">
                             {goals
-                                .filter(goal => goal.type === type)
+                                .filter(goal => goal.type === type && !goal.completed)
                                 .map((goal) => (
                                     <GoalItem 
                                         key={goal.id}
                                         goal={goal}
                                         onToggle={handleToggleGoal}
-                                        onDelete={(goalId) => {
-                                            console.log('Delete clicked for goal:', goalId);
-                                            handleDeleteGoal(goalId);
-                                        }}
+                                        onDelete={handleDeleteGoal}
                                     />
                                 ))}
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className="mt-10">
+                <h2 className="text-xl font-semibold mb-4 text-right pr-4">Completed Goals</h2>
+                <div className="space-y-2">
+                    {goals
+                        .filter(goal => goal.completed)
+                        .map((goal) => (
+                            <GoalItem 
+                                key={goal.id}
+                                goal={goal}
+                                onToggle={handleToggleGoal}
+                                onDelete={handleDeleteGoal}
+                            />
+                        ))}
+                </div>
             </div>
         </div>
     );
