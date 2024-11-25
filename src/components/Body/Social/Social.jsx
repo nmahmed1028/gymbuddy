@@ -1,7 +1,7 @@
 /*
     This component is used to display the Social page.
  */
-import React, { useState } from "react";
+// import { useState } from "react";
 import FriendList from "./FriendList";
 import AddFriend from "./AddFriend";
 import ActivityFeed from "./ActivityFeed";

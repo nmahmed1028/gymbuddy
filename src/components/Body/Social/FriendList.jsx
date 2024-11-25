@@ -1,14 +1,14 @@
 import React from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GetUserFriends, AcceptFriendRequest } from "@firebasegen/default-connector";
+import { getUserFriends, acceptFriendRequest } from "@firebasegen/default-connector";
 
 export default function FriendList() {
     const userId = "replace w/ user id"; //update dynamically
-    const { data, loading, error, refetch } = useQuery(GetUserFriends, {
+    const { data, loading, error, refetch } = useQuery(getUserFriends, {
         variables: { userId },
     });
 
-    const [acceptFriend] = useMutation(AcceptFriendRequest);
+    const [acceptFriend] = useMutation(acceptFriendRequest);
 
     const handleAcceptRequest = async (friendId) => {
         await acceptFriend({

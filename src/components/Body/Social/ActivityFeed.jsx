@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { GetFriendActivities } from "@firebasegen/default-connector";
+import { getFriendActivities } from "@firebasegen/default-connector";
 
 const ActivityFeed = () => {
   const userId = "replace w/ user id"; // Update dynamically
-  const { data, loading, error } = useQuery(GetFriendActivities, {
+  const { data, loading, error } = useQuery(getFriendActivities, {
     variables: { userId },
   });
 
