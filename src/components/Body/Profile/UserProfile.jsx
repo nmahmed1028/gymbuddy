@@ -65,36 +65,38 @@ const UserProfile = ({ email, displayName, setDisplayName, username, setUsername
             </Box>
             <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <Dialog.Trigger asChild>
-                    <button className="edit-profile-button">Edit Profile</button>
+                    <button className="text-violet11 shadow-blackA4 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">Edit Profile</button>
                 </Dialog.Trigger>
                 <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+                    <Dialog.Overlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0" />
                     <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-md shadow-lg">
-                        <Dialog.Title>Edit Profile</Dialog.Title>
+                    <Dialog.Title className="text-mauve12 m-0 text-[30px] font-medium">
+                    Edit Profile
+                    </Dialog.Title>
                         <input
                             type="text"
                             placeholder="Screen Name"
                             defaultValue={displayName}
                             ref={nameRef}
-                            className="mb-4"
+                            className="mb-4 text-white bg-blackA6"
                         />
                         <input
                             type="text"
                             placeholder="Username"
                             defaultValue={username}
                             ref={usernameRef}
-                            className="mb-4"
+                            className="mb-4 text-white bg-blackA6"
                         />
-                        <StateSelect state={location} setState={setLocation} className="mb-4" />
+                        <StateSelect state={location} setState={setLocation} className="mb-4 bg-blackA6 text-white" />
                         <DietaryRestrictions 
                             dietaryRestrictions={dietaryRestrictions} 
                             setDietaryRestrictions={setDietaryRestrictions} 
                             newDietaryRestriction={newDietaryRestriction} 
                             setNewDietaryRestriction={setNewDietaryRestriction} 
                         />
-                        <button onClick={handleSubmitEditProfile} className="mt-4">Save Changes</button>
+                        <button onClick={handleSubmitEditProfile} className="bg-blackA6 mt-4 text-white">Save Changes</button>
                         <Dialog.Close asChild>
-                            <button className="mt-2">Cancel</button>
+                            <button className="bg-blackA6 mt-2 text-white">Cancel</button>
                         </Dialog.Close>
                     </Dialog.Content>
                 </Dialog.Portal>
