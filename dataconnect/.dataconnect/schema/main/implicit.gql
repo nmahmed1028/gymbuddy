@@ -1,0 +1,22 @@
+extend type Friends {
+  """
+  ✨ Implicit foreign key field based on `Friends`.`user1`. It must match the value of `User`.`email`. See `@ref` for how to customize it.
+  """
+  user1Email: String! @fdc_generated(from: "Friends.user1", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Friends`.`user2`. It must match the value of `User`.`email`. See `@ref` for how to customize it.
+  """
+  user2Email: String! @fdc_generated(from: "Friends.user2", purpose: IMPLICIT_REF_FIELD)
+}
+extend type UserGoal {
+  """
+  ✨ Implicit foreign key field based on `UserGoal`.`user`. It must match the value of `User`.`email`. See `@ref` for how to customize it.
+  """
+  userEmail: String! @fdc_generated(from: "UserGoal.user", purpose: IMPLICIT_REF_FIELD)
+}
+extend type UserProgress {
+  """
+  ✨ Implicit foreign key field based on `UserProgress`.`user`. It must match the value of `User`.`email`. See `@ref` for how to customize it.
+  """
+  userEmail: String! @fdc_generated(from: "UserProgress.user", purpose: IMPLICIT_REF_FIELD)
+}

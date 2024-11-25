@@ -58,7 +58,7 @@ type Friends @table(name: "Friends", key: ["user1", "user2"]) {
     user1: User! @ref
     user2: User! @ref
     status: String @default(value: "pending")
-    createdAt: String! @col(name: "created_at") @default(expr: "current_timestamp") #FIX THIS
+    createdAt: Timestamp! @col(name: "created_at") @default(expr: "request.time") #FIX THIS
 }
 
 type UserGoal @table(name: "userGoals", key: ["user","id"]){

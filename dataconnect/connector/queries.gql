@@ -128,7 +128,7 @@ query GetAllRecipes {
 }
 
 query GetUserFriends($userId: UUID!) {
-    friends(filter: {OR: [{user1: {eq:$userId}}, {user2: {eq: $userId}}]}) {
+    friendss(where: {_or: [{user1 : {id : {eq: $userId}}}, {user2: {id: {eq: $userId}}}]}) {
         user1 {
             id
             username
@@ -142,19 +142,13 @@ query GetUserFriends($userId: UUID!) {
 }
 
 query GetFriendActivities($userId: UUID!) {
-    friends(filter: {OR: [{user1: {eq: $userId}}, {user2: {eq: $userId}}]}) {
+    friendss(where: {_or: [{user1 : {id : {eq: $userId}}}, {user2: {id: {eq: $userId}}}]}) {
         user1 {
             id
         }
         user2 {
             id
         }
-    }
-    activities(filter: {userId: {in: [/*list of friend ids */]}}) {
-        id
-        userId
-        description
-        timestamp
     }
 }
 

@@ -42,6 +42,30 @@ export function upsertProgressRef(dcOrVars, vars) {
 export function upsertProgress(dcOrVars, vars) {
   return executeMutation(upsertProgressRef(dcOrVars, vars));
 }
+export function addFriendRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return mutationRef(dcInstance, 'AddFriend', inputVars);
+}
+export function addFriend(dcOrVars, vars) {
+  return executeMutation(addFriendRef(dcOrVars, vars));
+}
+export function acceptFriendRequestRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return mutationRef(dcInstance, 'AcceptFriendRequest', inputVars);
+}
+export function acceptFriendRequest(dcOrVars, vars) {
+  return executeMutation(acceptFriendRequestRef(dcOrVars, vars));
+}
 export function getUserByEmailRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   if('_useGeneratedSdk' in dcInstance) {
@@ -113,4 +137,28 @@ export function getAllRecipesRef(dc) {
 }
 export function getAllRecipes(dc) {
   return executeQuery(getAllRecipesRef(dc));
+}
+export function getUserFriendsRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return queryRef(dcInstance, 'GetUserFriends', inputVars);
+}
+export function getUserFriends(dcOrVars, vars) {
+  return executeQuery(getUserFriendsRef(dcOrVars, vars));
+}
+export function getFriendActivitiesRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return queryRef(dcInstance, 'GetFriendActivities', inputVars);
+}
+export function getFriendActivities(dcOrVars, vars) {
+  return executeQuery(getFriendActivitiesRef(dcOrVars, vars));
 }

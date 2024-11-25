@@ -1,0 +1,634 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `Friends` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  friends_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Friends_Data!
+  ): Friends_KeyOutput! @fdc_generated(from: "Friends", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `PresetGoal` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  presetGoal_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: PresetGoal_Data!
+  ): PresetGoal_KeyOutput! @fdc_generated(from: "PresetGoal", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Recipe` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  recipe_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Recipe_Data!
+  ): Recipe_KeyOutput! @fdc_generated(from: "Recipe", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `User` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `UserGoal` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  userGoal_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: UserGoal_Data!
+  ): UserGoal_KeyOutput! @fdc_generated(from: "UserGoal", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `UserProgress` into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  userProgress_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: UserProgress_Data!
+  ): UserProgress_KeyOutput! @fdc_generated(from: "UserProgress", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `Friends` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  friends_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Friends_Data!]!
+  ): [Friends_KeyOutput!]! @fdc_generated(from: "Friends", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `PresetGoal` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  presetGoal_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [PresetGoal_Data!]!
+  ): [PresetGoal_KeyOutput!]! @fdc_generated(from: "PresetGoal", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Recipe` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  recipe_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Recipe_Data!]!
+  ): [Recipe_KeyOutput!]! @fdc_generated(from: "Recipe", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `User` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `UserGoal` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  userGoal_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [UserGoal_Data!]!
+  ): [UserGoal_KeyOutput!]! @fdc_generated(from: "UserGoal", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `UserProgress` objects into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  userProgress_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [UserProgress_Data!]!
+  ): [UserProgress_KeyOutput!]! @fdc_generated(from: "UserProgress", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `Friends` into the table, based on the primary key. Returns the key of the newly inserted `Friends`.
+  """
+  friends_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Friends_Data!
+  ): Friends_KeyOutput! @fdc_generated(from: "Friends", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `PresetGoal` into the table, based on the primary key. Returns the key of the newly inserted `PresetGoal`.
+  """
+  presetGoal_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: PresetGoal_Data!
+  ): PresetGoal_KeyOutput! @fdc_generated(from: "PresetGoal", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Recipe` into the table, based on the primary key. Returns the key of the newly inserted `Recipe`.
+  """
+  recipe_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Recipe_Data!
+  ): Recipe_KeyOutput! @fdc_generated(from: "Recipe", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted `User`.
+  """
+  user_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `UserGoal` into the table, based on the primary key. Returns the key of the newly inserted `UserGoal`.
+  """
+  userGoal_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: UserGoal_Data!
+  ): UserGoal_KeyOutput! @fdc_generated(from: "UserGoal", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `UserProgress` into the table, based on the primary key. Returns the key of the newly inserted `UserProgress`.
+  """
+  userProgress_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: UserProgress_Data!
+  ): UserProgress_KeyOutput! @fdc_generated(from: "UserProgress", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `Friends` objects into the table, based on the primary key. Returns the key of the newly inserted `Friends`.
+  """
+  friends_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Friends_Data!]!
+  ): [Friends_KeyOutput!]! @fdc_generated(from: "Friends", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `PresetGoal` objects into the table, based on the primary key. Returns the key of the newly inserted `PresetGoal`.
+  """
+  presetGoal_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [PresetGoal_Data!]!
+  ): [PresetGoal_KeyOutput!]! @fdc_generated(from: "PresetGoal", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Recipe` objects into the table, based on the primary key. Returns the key of the newly inserted `Recipe`.
+  """
+  recipe_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Recipe_Data!]!
+  ): [Recipe_KeyOutput!]! @fdc_generated(from: "Recipe", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted `User`.
+  """
+  user_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `UserGoal` objects into the table, based on the primary key. Returns the key of the newly inserted `UserGoal`.
+  """
+  userGoal_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [UserGoal_Data!]!
+  ): [UserGoal_KeyOutput!]! @fdc_generated(from: "UserGoal", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `UserProgress` objects into the table, based on the primary key. Returns the key of the newly inserted `UserProgress`.
+  """
+  userProgress_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [UserProgress_Data!]!
+  ): [UserProgress_KeyOutput!]! @fdc_generated(from: "UserProgress", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `Friends` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  friends_update(
+    """
+    The key used to identify the object.
+    """
+    key: Friends_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Friends_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Friends_Data!
+  ): Friends_KeyOutput @fdc_generated(from: "Friends", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `PresetGoal` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  presetGoal_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: PresetGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: PresetGoal_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: PresetGoal_Data!
+  ): PresetGoal_KeyOutput @fdc_generated(from: "PresetGoal", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Recipe` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  recipe_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Recipe_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Recipe_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Recipe_Data!
+  ): Recipe_KeyOutput @fdc_generated(from: "Recipe", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  user_update(
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: User_Data!
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `UserGoal` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  userGoal_update(
+    """
+    The key used to identify the object.
+    """
+    key: UserGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserGoal_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: UserGoal_Data!
+  ): UserGoal_KeyOutput @fdc_generated(from: "UserGoal", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `UserProgress` based on `id`, `key` or `first`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  userProgress_update(
+    """
+    The key used to identify the object.
+    """
+    key: UserProgress_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserProgress_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: UserProgress_Data!
+  ): UserProgress_KeyOutput @fdc_generated(from: "UserProgress", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `Friends` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  friends_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Friends_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Friends_Data!
+  ): Int! @fdc_generated(from: "Friends", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `PresetGoal` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  presetGoal_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: PresetGoal_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: PresetGoal_Data!
+  ): Int! @fdc_generated(from: "PresetGoal", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Recipe` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  recipe_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Recipe_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Recipe_Data!
+  ): Int! @fdc_generated(from: "Recipe", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  user_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: User_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: User_Data!
+  ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `UserGoal` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  userGoal_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: UserGoal_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: UserGoal_Data!
+  ): Int! @fdc_generated(from: "UserGoal", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `UserProgress` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  userProgress_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: UserProgress_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: UserProgress_Data!
+  ): Int! @fdc_generated(from: "UserProgress", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `Friends` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  friends_delete(
+    """
+    The key used to identify the object.
+    """
+    key: Friends_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Friends_FirstRow
+  ): Friends_KeyOutput @fdc_generated(from: "Friends", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `PresetGoal` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  presetGoal_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: PresetGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: PresetGoal_FirstRow
+  ): PresetGoal_KeyOutput @fdc_generated(from: "PresetGoal", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Recipe` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  recipe_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Recipe_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Recipe_FirstRow
+  ): Recipe_KeyOutput @fdc_generated(from: "Recipe", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  user_delete(
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `UserGoal` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  userGoal_delete(
+    """
+    The key used to identify the object.
+    """
+    key: UserGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserGoal_FirstRow
+  ): UserGoal_KeyOutput @fdc_generated(from: "UserGoal", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `UserProgress` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  userProgress_delete(
+    """
+    The key used to identify the object.
+    """
+    key: UserProgress_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserProgress_FirstRow
+  ): UserProgress_KeyOutput @fdc_generated(from: "UserProgress", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `Friends` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  friends_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Friends_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Friends", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `PresetGoal` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  presetGoal_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: PresetGoal_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "PresetGoal", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Recipe` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  recipe_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Recipe_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Recipe", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  user_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: User_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `UserGoal` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  userGoal_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: UserGoal_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "UserGoal", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `UserProgress` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  userProgress_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: UserProgress_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "UserProgress", purpose: DELETE_MULTIPLE)
+}

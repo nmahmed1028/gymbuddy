@@ -1,0 +1,126 @@
+extend type User {
+  """
+  ✨ List `Friends` objects in a one-to-many relationship (where `Friends`.`user1` is this object).
+  """
+  friendss_on_user1(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Friends_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Friends_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [Friends!]! @fdc_generated(from: "Friends.user1", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Friends` objects in a one-to-many relationship (where `Friends`.`user2` is this object).
+  """
+  friendss_on_user2(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Friends_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Friends_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [Friends!]! @fdc_generated(from: "Friends.user2", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `UserGoal` objects in a one-to-many relationship (where `UserGoal`.`user` is this object).
+  """
+  userGoals_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserGoal_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserGoal_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [UserGoal!]! @fdc_generated(from: "UserGoal.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `UserProgress` objects in a one-to-one relationship (where `UserProgress`.`user` is this object).
+  """
+  userProgress_on_user: UserProgress @fdc_generated(from: "UserProgress.user", purpose: QUERY_SINGLE_ONE_TO_ONE)
+  """
+  ✨ List `User` objects using `Friends` as the join table (a `Friends` object exists where its `user2` is this and its `user1` is that).
+  """
+  users_via_Friends_on_user1(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Friends_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Friends_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [User!]! @fdc_generated(from: "Friends", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  ✨ List `User` objects using `Friends` as the join table (a `Friends` object exists where its `user1` is this and its `user2` is that).
+  """
+  users_via_Friends_on_user2(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Friends_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Friends_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [User!]! @fdc_generated(from: "Friends", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+}

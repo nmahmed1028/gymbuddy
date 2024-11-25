@@ -1,0 +1,240 @@
+extend type Query {
+  """
+  ✨ Look up a single `Friends` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  friends(
+    """
+    The key used to identify the object.
+    """
+    key: Friends_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Friends_FirstRow
+  ): Friends @fdc_generated(from: "Friends", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `PresetGoal` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  presetGoal(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: PresetGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: PresetGoal_FirstRow
+  ): PresetGoal @fdc_generated(from: "PresetGoal", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Recipe` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  recipe(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Recipe_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Recipe_FirstRow
+  ): Recipe @fdc_generated(from: "Recipe", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `User` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  user(
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `UserGoal` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  userGoal(
+    """
+    The key used to identify the object.
+    """
+    key: UserGoal_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserGoal_FirstRow
+  ): UserGoal @fdc_generated(from: "UserGoal", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `UserProgress` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  userProgress(
+    """
+    The key used to identify the object.
+    """
+    key: UserProgress_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserProgress_FirstRow
+  ): UserProgress @fdc_generated(from: "UserProgress", purpose: QUERY_SINGLE)
+  """
+  ✨ List `Friends` objects in the table, optionally filtered by `where` conditions.
+  """
+  friendss(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Friends_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Friends_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [Friends!]! @fdc_generated(from: "Friends", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `PresetGoal` objects in the table, optionally filtered by `where` conditions.
+  """
+  presetGoals(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: PresetGoal_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [PresetGoal_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [PresetGoal!]! @fdc_generated(from: "PresetGoal", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Recipe` objects in the table, optionally filtered by `where` conditions.
+  """
+  recipes(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Recipe_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Recipe_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [Recipe!]! @fdc_generated(from: "Recipe", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `User` objects in the table, optionally filtered by `where` conditions.
+  """
+  users(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: User_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [User_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [User!]! @fdc_generated(from: "User", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `UserGoal` objects in the table, optionally filtered by `where` conditions.
+  """
+  userGoals(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserGoal_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserGoal_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [UserGoal!]! @fdc_generated(from: "UserGoal", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `UserProgress` objects in the table, optionally filtered by `where` conditions.
+  """
+  userProgresses(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserProgress_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserProgress_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+  ): [UserProgress!]! @fdc_generated(from: "UserProgress", purpose: QUERY_MULTIPLE)
+}

@@ -4,12 +4,12 @@
 - [x] MUTATION: upload user (upsertUser())
 - [x] QUERY: get userInfo {display name, username, email}
 
-- [] MUTATION: set userLevel {XP}
-- [] QUERY: get userLevel {XP}
+- [x] MUTATION: set userLevel {XP}
+- [x] QUERY: get userLevel {XP}
 
 - [x] MUTATION: set userGoals //InsertUserGoals
 - [x] QUERY: get userGoals //Two queries, get completed and get uncompleted
-- [] QUERY: get preDefinedGoals
+- [x] QUERY: get preDefinedGoals
 
 - [x] QUERY: get past workouts //Get completed usergoals
 

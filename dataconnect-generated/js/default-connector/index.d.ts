@@ -11,6 +11,24 @@ export type DateString = string;
 
 
 
+export interface AcceptFriendRequestData {
+  friends_update?: Friends_Key | null;
+}
+
+export interface AcceptFriendRequestVariables {
+  userEmail: string;
+  friendEmail: string;
+}
+
+export interface AddFriendData {
+  friends_insert: Friends_Key;
+}
+
+export interface AddFriendVariables {
+  userEmail: string;
+  friendEmail: string;
+}
+
 export interface AddUserGoalData {
   userGoal_insert: UserGoal_Key;
 }
@@ -20,6 +38,12 @@ export interface AddUserGoalVariables {
   goalType: string;
   goalPoints: number;
   goalText?: string | null;
+}
+
+export interface Friends_Key {
+  user1Email: string;
+  user2Email: string;
+  __typename?: 'Friends_Key';
 }
 
 export interface GetAllRecipesData {
@@ -55,6 +79,21 @@ export interface GetCompleteUserGoalsData {
 
 export interface GetCompleteUserGoalsVariables {
   email: string;
+}
+
+export interface GetFriendActivitiesData {
+  friendss: ({
+    user1: {
+      id: UUIDString;
+    };
+      user2: {
+        id: UUIDString;
+      };
+  })[];
+}
+
+export interface GetFriendActivitiesVariables {
+  userId: UUIDString;
 }
 
 export interface GetPresetGoalsByLevelData {
@@ -105,6 +144,24 @@ export interface GetUserByEmailData {
 
 export interface GetUserByEmailVariables {
   keyEmail: string;
+}
+
+export interface GetUserFriendsData {
+  friendss: ({
+    user1: {
+      id: UUIDString;
+      username: string;
+    };
+      user2: {
+        id: UUIDString;
+        username: string;
+      };
+        status?: string | null;
+  })[];
+}
+
+export interface GetUserFriendsVariables {
+  userId: UUIDString;
 }
 
 export interface GetUserProgressData {
@@ -202,6 +259,24 @@ export function upsertProgress(dc: DataConnect, vars: UpsertProgressVariables): 
 
 
 /* Allow users to create refs without passing in DataConnect */
+export function addFriendRef(vars: AddFriendVariables): MutationRef<AddFriendData, AddFriendVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function addFriendRef(dc: DataConnect, vars: AddFriendVariables): MutationRef<AddFriendData,AddFriendVariables>;
+
+export function addFriend(vars: AddFriendVariables): MutationPromise<AddFriendData, AddFriendVariables>;
+export function addFriend(dc: DataConnect, vars: AddFriendVariables): MutationPromise<AddFriendData,AddFriendVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function acceptFriendRequestRef(vars: AcceptFriendRequestVariables): MutationRef<AcceptFriendRequestData, AcceptFriendRequestVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function acceptFriendRequestRef(dc: DataConnect, vars: AcceptFriendRequestVariables): MutationRef<AcceptFriendRequestData,AcceptFriendRequestVariables>;
+
+export function acceptFriendRequest(vars: AcceptFriendRequestVariables): MutationPromise<AcceptFriendRequestData, AcceptFriendRequestVariables>;
+export function acceptFriendRequest(dc: DataConnect, vars: AcceptFriendRequestVariables): MutationPromise<AcceptFriendRequestData,AcceptFriendRequestVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
 export function getUserByEmailRef(vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData, GetUserByEmailVariables>;
 /* Allow users to pass in custom DataConnect instances */
 export function getUserByEmailRef(dc: DataConnect, vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData,GetUserByEmailVariables>;
@@ -252,5 +327,23 @@ export function getAllRecipesRef(dc: DataConnect): QueryRef<GetAllRecipesData,un
 
 export function getAllRecipes(): QueryPromise<GetAllRecipesData, undefined>;
 export function getAllRecipes(dc: DataConnect): QueryPromise<GetAllRecipesData,undefined>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getUserFriendsRef(vars: GetUserFriendsVariables): QueryRef<GetUserFriendsData, GetUserFriendsVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getUserFriendsRef(dc: DataConnect, vars: GetUserFriendsVariables): QueryRef<GetUserFriendsData,GetUserFriendsVariables>;
+
+export function getUserFriends(vars: GetUserFriendsVariables): QueryPromise<GetUserFriendsData, GetUserFriendsVariables>;
+export function getUserFriends(dc: DataConnect, vars: GetUserFriendsVariables): QueryPromise<GetUserFriendsData,GetUserFriendsVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getFriendActivitiesRef(vars: GetFriendActivitiesVariables): QueryRef<GetFriendActivitiesData, GetFriendActivitiesVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getFriendActivitiesRef(dc: DataConnect, vars: GetFriendActivitiesVariables): QueryRef<GetFriendActivitiesData,GetFriendActivitiesVariables>;
+
+export function getFriendActivities(vars: GetFriendActivitiesVariables): QueryPromise<GetFriendActivitiesData, GetFriendActivitiesVariables>;
+export function getFriendActivities(dc: DataConnect, vars: GetFriendActivitiesVariables): QueryPromise<GetFriendActivitiesData,GetFriendActivitiesVariables>;
 
 
