@@ -11,7 +11,7 @@ const LevelProgression = ({ level, totalPoints, progress }) => {
 
     return (
         <div className="flex justify-between items-center w-full gap-4 px-8">
-            <h2 className="text-left whitespace-nowrap">Experience Level</h2>
+            <h4 className="text-left whitespace-nowrap">Exp Level</h4>
             <div className="flex-grow">
                 <p className="text-left">Level: {level}{level >= 50 ? " (Max)" : ""}</p>
                 <Progress 
@@ -19,11 +19,6 @@ const LevelProgression = ({ level, totalPoints, progress }) => {
                     className="bg-gray-100 h-3 mb-1"
                     indicatorClassName="bg-orange-500"
                 />
-                {nextLevelPoints && (
-                    <p className="text-sm text-gray-600 text-right">
-                        Next Level: {nextLevelPoints} points
-                    </p>
-                )}
             </div>
         </div>
     );
