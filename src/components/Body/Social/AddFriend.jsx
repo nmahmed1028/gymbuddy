@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useState } from "react";
 import { addFriend } from "@firebasegen/default-connector";
+import { getAuth } from "firebase/auth";
 
 export default function AddFriendPage() {
   const [email, setEmail] = useState("");
-  const userId = "replace w user id"; //update dynamically
-  const [addFriends] = useMutation(addFriend);
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid;
 
   const handleAddFriend = async () => {
     try {
-      const friendId = "resolve-friend-id"; // replace w API to find user by email
-      await addFriends({
-        variables: { userId, friendId },
+      await addFriend({
+        userId,
+        friendEmail: email
       });
       alert("Friend request sent!");
       setEmail("");

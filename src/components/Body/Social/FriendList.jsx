@@ -1,20 +1,35 @@
-import React from "react";
-import { useQuery, useMutation } from "@apollo/client";
 import { getUserFriends, acceptFriendRequest } from "@firebasegen/default-connector";
+import { useState, useEffect } from "react";
 
 export default function FriendList() {
     const userId = "replace w/ user id"; //update dynamically
-    const { data, loading, error, refetch } = useQuery(getUserFriends, {
-        variables: { userId },
-    });
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const [acceptFriend] = useMutation(acceptFriendRequest);
+    const fetchFriends = async () => {
+        try {
+            setLoading(true);
+            const result = await getUserFriends({
+                variables: { userId },
+            });
+            setData(result);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchFriends();
+    }, [userId]);
 
     const handleAcceptRequest = async (friendId) => {
-        await acceptFriend({
+        await acceptFriendRequest({
             variables: { userId, friendId },
         });
-        refetch();
+        fetchFriends(); // Refetch after accepting
     };
 
     if (loading) return <p>Loading...</p>;
