@@ -117,6 +117,32 @@ const Goals = () => {
         loadGoals();
     }, [user?.email]);
 
+    useEffect(() => {
+        const loadUserProgress = async () => {
+            if (!user?.email) return;
+
+            try {
+                const userQuery = query(collection(db, "users"), where("email", "==", user.email));
+                const userSnapshot = await getDocs(userQuery);
+                
+                if (!userSnapshot.empty) {
+                    const userData = userSnapshot.docs[0].data();
+                    const points = userData.totalPoints || 0;
+                    setTotalPoints(points);
+                    
+                    // Calculate and set level/progress based on loaded points
+                    const { level: newLevel, progress: newProgress } = calculateLevelAndProgress(points);
+                    setLevel(newLevel);
+                    setProgress(newProgress);
+                }
+            } catch (error) {
+                console.error("Error loading user progress:", error);
+            }
+        };
+
+        loadUserProgress();
+    }, [user?.email]);
+
     const handleAddGoal = async () => {
         if (!newGoal.trim()) return;
         
@@ -200,6 +226,8 @@ const Goals = () => {
     };
 
     const updateUserProgress = async (points) => {
+        if (!user?.email) return;
+
         try {
             const userQuery = query(collection(db, "users"), where("email", "==", user.email));
             const userSnapshot = await getDocs(userQuery);
@@ -207,7 +235,17 @@ const Goals = () => {
             if (!userSnapshot.empty) {
                 const userDoc = userSnapshot.docs[0];
                 await updateDoc(doc(db, "users", userDoc.id), {
-                    totalPoints: points
+                    totalPoints: points,
+                    level: level,
+                    progress: progress
+                });
+            } else {
+                // Create new user document if it doesn't exist
+                await addDoc(collection(db, "users"), {
+                    email: user.email,
+                    totalPoints: points,
+                    level: level,
+                    progress: progress
                 });
             }
         } catch (e) {

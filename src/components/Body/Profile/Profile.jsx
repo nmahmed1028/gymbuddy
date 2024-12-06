@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../hooks/AuthProvider";
-import { getUserByEmail } from "@firebasegen/default-connector";
+import { db } from '../../../firebase';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import UserProfile from './UserProfile';
 import Goals from './Goals';
 
@@ -14,21 +15,24 @@ const Profile = () => {
     const email = useAuth().curUser.email;
 
     useEffect(() => {
-        const loadUserData = async () => {
-            try {
-                console.log("Loading user data for:", email);
-                const userData = await getUserByEmail({ keyEmail: email });
-                if (userData.user) {
-                    setDisplayName(userData.user.displayname);
-                    setUsername(userData.user.username);
-                    setDietaryRestrictions(userData.user.dietaryRestrictions || []);
-                    setLocation(userData.user.location || '');
-                }
-            } catch (error) {
-                console.error("Error loading user data:", error);
+        if (!email) return;
+
+        // Set up real-time listener for user data
+        const q = query(collection(db, "users"), where("email", "==", email));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            if (!querySnapshot.empty) {
+                const userData = querySnapshot.docs[0].data();
+                setDisplayName(userData.displayname || '');
+                setUsername(userData.username || '');
+                setLocation(userData.location || '');
+                setDietaryRestrictions(userData.dietaryRestrictions || []);
             }
-        };
-        loadUserData();
+        }, (error) => {
+            console.error("Error fetching user data:", error);
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
     }, [email]);
 
     return (

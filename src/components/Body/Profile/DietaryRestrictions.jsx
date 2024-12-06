@@ -1,41 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const DietaryRestrictions = ({ dietaryRestrictions, setDietaryRestrictions, newDietaryRestriction, setNewDietaryRestriction }) => {
-    const handleAddDietaryRestriction = () => {
-        if (newDietaryRestriction.trim()) {
-            setDietaryRestrictions([...dietaryRestrictions, newDietaryRestriction]);
-            setNewDietaryRestriction('');
-        }
+const DietaryRestrictions = ({ dietaryRestrictions, setDietaryRestrictions }) => {
+    const [newRestriction, setNewRestriction] = useState('');
+
+    const handleAddRestriction = () => {
+        if (newRestriction.trim() === '') return;
+        
+        // Add the new restriction to the array
+        setDietaryRestrictions([...dietaryRestrictions, newRestriction.trim()]);
+        // Clear the input
+        setNewRestriction('');
     };
 
-    const handleRemoveDietaryRestriction = (index) => {
-        const updatedRestrictions = dietaryRestrictions.filter((_, i) => i !== index);
-        setDietaryRestrictions(updatedRestrictions);
+    const handleRemoveRestriction = (indexToRemove) => {
+        setDietaryRestrictions(dietaryRestrictions.filter((_, index) => index !== indexToRemove));
     };
 
     return (
-        <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-2 text-left">Dietary Restrictions</h3>
-            <input
-                value={newDietaryRestriction}
-                onChange={(e) => setNewDietaryRestriction(e.target.value)}
-                placeholder="Enter dietary restriction"
-                className="text-white shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] bg-gray-800"
-            />
-            <button onClick={handleAddDietaryRestriction} className="text-white font-bold bg-blue-500 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:outline-none">
-                Add
-            </button>
+        <div className="mb-4">
+            <label className="block text-black mb-2">Dietary Restrictions</label>
+            <div className="flex gap-2 mb-2">
+                <input
+                    type="text"
+                    value={newRestriction}
+                    onChange={(e) => setNewRestriction(e.target.value)}
+                    placeholder="Add restriction"
+                    className="flex-grow p-2 border rounded text-black bg-white"
+                />
+                <button
+                    onClick={handleAddRestriction}
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                    Add
+                </button>
+            </div>
+            
+            {/* Display current restrictions */}
             <div className="space-y-2">
-                {dietaryRestrictions.length > 0 ? (
-                    dietaryRestrictions.map((restriction, index) => (
-                        <div key={index} className="flex items-center justify-between">
-                            <p className="text-md text-gray-700">{restriction}</p>
-                            <button onClick={() => handleRemoveDietaryRestriction(index)} className="text-red-500 hover:text-red-700 ml-2">X</button>
-                        </div>
-                    ))
-                ) : (
-                    <p className="text-md text-gray-500">No dietary restrictions set.</p>
-                )}
+                {dietaryRestrictions.map((restriction, index) => (
+                    <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
+                        <span className="text-black">{restriction}</span>
+                        <button
+                            onClick={() => handleRemoveRestriction(index)}
+                            className="text-red-500 hover:text-red-700"
+                        >
+                            ✕
+                        </button>
+                    </div>
+                ))}
             </div>
         </div>
     );
