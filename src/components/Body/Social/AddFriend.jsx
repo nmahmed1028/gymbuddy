@@ -9,13 +9,38 @@ export default function AddFriendPage() {
 
   const handleAddFriend = async () => {
     try {
-      await addFriend({
+      if (email.trim() === "") {
+        alert("Please enter a valid email address");
+        return;
+      }
+
+      if (email.toLowerCase() === userEmail?.toLowerCase()) {
+        alert("You cannot add yourself as a friend!");
+        return;
+      }
+      
+      //debug, logs input vals (remove later)
+      console.log("Current user email:", userEmail);
+      console.log("Friend email:", email.trim());
+      
+      const result = await addFriend({
         userEmail: userEmail,
-        friendEmail: email,
+        friendEmail: email.trim(),
       });
+      
+      console.log("Add friend result:", result); //debug, logs success result (remove later)
+      
       alert("Friend request sent!");
       setEmail("");
     } catch (err) {
+      //debug, logs error
+      console.error("Full error object:", err);
+      console.error("Error details:", {
+        code: err.code,
+        message: err.message,
+        status: err.status,
+        stack: err.stack
+      });
       alert("Error adding friend: " + err.message);
     }
   };
