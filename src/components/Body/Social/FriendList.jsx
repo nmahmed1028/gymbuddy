@@ -36,24 +36,28 @@ export default function FriendList() {
     if (error) return <p>Error fetching friends</p>;
 
     return (
-        <div className = "friend-list">
+        <div className="friend-list">
             <h2>Friend List</h2>
-            {data?.friends?.map((friend) => {
-                const isUser1 = friend.user1.id === userId;
-                const otherUser = isUser1 ? friend.user2 : friend.user1;
+            {(!data?.friends || data.friends.length === 0) ? (
+                <p className="empty-state">No friends added yet</p>
+            ) : (
+                data.friends.map((friend) => {
+                    const isUser1 = friend.user1.id === userId;
+                    const otherUser = isUser1 ? friend.user2 : friend.user1;
 
-                return (
-                    <div key = {friend.id} className = "friend-item">
-                        <p>{otherUser.username}</p>
-                        <p>Status: {friend.status}</p>
-                        {friend.status === "pending" && (
-                            <button onClick={() => handleAcceptRequest(otherUser.id)}>
-                                Accept Request
-                            </button>
-                        )}
-                    </div>
-                );
-            })}
+                    return (
+                        <div key={friend.id} className="friend-item">
+                            <p>{otherUser.username}</p>
+                            <p>Status: {friend.status}</p>
+                            {friend.status === "pending" && (
+                                <button onClick={() => handleAcceptRequest(otherUser.id)}>
+                                    Accept Request
+                                </button>
+                            )}
+                        </div>
+                    );
+                })
+            )}
         </div>
     );
-};
+}

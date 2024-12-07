@@ -32,12 +32,16 @@ const ActivityFeed = () => {
   return (
     <div className="activity-feed">
       <h2>Activity Feed</h2>
-      {data?.activities?.map((activity) => (
-        <div key={activity.id} className="activity-item">
-          <p>{activity.description}</p>
-          <small>{new Date(activity.timestamp).toLocaleString()}</small>
-        </div>
-      ))}
+      {(!data?.activities || data.activities.length === 0) ? (
+        <p className="empty-state">No recent activity</p>
+      ) : (
+        data.activities.map((activity) => (
+          <div key={activity.id} className="activity-item">
+            <p>{activity.description}</p>
+            <small>{new Date(activity.timestamp).toLocaleString()}</small>
+          </div>
+        ))
+      )}
     </div>
   );
 };

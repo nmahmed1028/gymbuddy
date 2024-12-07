@@ -1,0 +1,175 @@
+/*Social Page*/
+.Social {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/*Add Friend Section*/
+.add-friend {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.add-friend h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.add-friend input {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 60%;
+    background-color: white;
+    color: black;
+}
+
+.add-friend button {
+    padding: 8px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.add-friend button:hover {
+    background-color: #45a049;
+}
+
+/*Activity Feed*/
+.activity-feed {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.activity-feed h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.activity-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.activity-item p {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.activity-item small {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/*Friend List*/
+.friend-list {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.friend-list h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.friend-item p {
+    margin: 0;
+    color: #333;
+}
+
+.friend-item button {
+    padding: 6px 12px;
+    background-color: #008cba;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.friend-item button:hover {
+    background-color: #007bb5;
+}
+
+/*Responsive Design*/
+@media (max-width: 600px) {
+    .add-friend input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .add-friend button {
+        width: 100%;
+    }
+
+    .friend-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+/* Update existing styles */
+.friend-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.friend-list, .activity-feed {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Add new styles */
+.empty-state {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    font-style: italic;
+}
+
+/* Update Social.jsx layout */
+.social-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}

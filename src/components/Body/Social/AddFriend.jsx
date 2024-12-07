@@ -5,13 +5,13 @@ import { getAuth } from "firebase/auth";
 export default function AddFriendPage() {
   const [email, setEmail] = useState("");
   const auth = getAuth();
-  const userId = auth.currentUser?.uid;
+  const userEmail = auth.currentUser?.email;
 
   const handleAddFriend = async () => {
     try {
       await addFriend({
-        userId,
-        friendEmail: email
+        userEmail: userEmail,
+        friendEmail: email,
       });
       alert("Friend request sent!");
       setEmail("");
@@ -32,5 +32,5 @@ export default function AddFriendPage() {
       <button onClick={handleAddFriend}>Send Request</button>
     </div>
   );
-};
+}
 
