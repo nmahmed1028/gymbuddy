@@ -63,15 +63,15 @@ input Friends_Data {
   """
   user2: User_Key
   """
-  ✨ Generated from Field `Friends`.`createdAt` of type `Timestamp!`
+  ✨ Generated from Field `Friends`.`createdAt` of type `Timestamp`
   """
   createdAt: Timestamp
   """
-  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Friends`.`createdAt` of type `Timestamp!`)
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Friends`.`createdAt` of type `Timestamp`)
   """
   createdAt_expr: Timestamp_Expr
   """
-  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Friends`.`createdAt` of type `Timestamp!`)
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Friends`.`createdAt` of type `Timestamp`)
   """
   createdAt_time: Timestamp_Relative
   """
@@ -124,7 +124,7 @@ input Friends_Filter {
   """
   user2: User_Filter
   """
-  ✨ Generated from Field `Friends`.`createdAt` of type `Timestamp!`
+  ✨ Generated from Field `Friends`.`createdAt` of type `Timestamp`
   """
   createdAt: Timestamp_Filter
   """
@@ -204,7 +204,7 @@ input Friends_Order {
   """
   user2: User_Order
   """
-  ✨ Generated from Field `Friends`.`createdAt` of type `Timestamp!`
+  ✨ Generated from Field `Friends`.`createdAt` of type `Timestamp`
   """
   createdAt: OrderDirection
   """

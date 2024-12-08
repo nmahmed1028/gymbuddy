@@ -7,76 +7,6 @@ const connectorConfig = {
 };
 exports.connectorConfig = connectorConfig;
 
-function upsertUserRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
-  if('_useGeneratedSdk' in dcInstance) {
-    dcInstance._useGeneratedSdk();
-  } else {
-    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
-  }
-  return mutationRef(dcInstance, 'UpsertUser', inputVars);
-}
-exports.upsertUserRef = upsertUserRef;
-exports.upsertUser = function upsertUser(dcOrVars, vars) {
-  return executeMutation(upsertUserRef(dcOrVars, vars));
-};
-
-function addUserGoalRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
-  if('_useGeneratedSdk' in dcInstance) {
-    dcInstance._useGeneratedSdk();
-  } else {
-    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
-  }
-  return mutationRef(dcInstance, 'AddUserGoal', inputVars);
-}
-exports.addUserGoalRef = addUserGoalRef;
-exports.addUserGoal = function addUserGoal(dcOrVars, vars) {
-  return executeMutation(addUserGoalRef(dcOrVars, vars));
-};
-
-function upsertProgressRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
-  if('_useGeneratedSdk' in dcInstance) {
-    dcInstance._useGeneratedSdk();
-  } else {
-    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
-  }
-  return mutationRef(dcInstance, 'UpsertProgress', inputVars);
-}
-exports.upsertProgressRef = upsertProgressRef;
-exports.upsertProgress = function upsertProgress(dcOrVars, vars) {
-  return executeMutation(upsertProgressRef(dcOrVars, vars));
-};
-
-function addFriendRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
-  if('_useGeneratedSdk' in dcInstance) {
-    dcInstance._useGeneratedSdk();
-  } else {
-    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
-  }
-  return mutationRef(dcInstance, 'AddFriend', inputVars);
-}
-exports.addFriendRef = addFriendRef;
-exports.addFriend = function addFriend(dcOrVars, vars) {
-  return executeMutation(addFriendRef(dcOrVars, vars));
-};
-
-function acceptFriendRequestRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
-  if('_useGeneratedSdk' in dcInstance) {
-    dcInstance._useGeneratedSdk();
-  } else {
-    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
-  }
-  return mutationRef(dcInstance, 'AcceptFriendRequest', inputVars);
-}
-exports.acceptFriendRequestRef = acceptFriendRequestRef;
-exports.acceptFriendRequest = function acceptFriendRequest(dcOrVars, vars) {
-  return executeMutation(acceptFriendRequestRef(dcOrVars, vars));
-};
-
 function getUserByEmailRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   if('_useGeneratedSdk' in dcInstance) {
@@ -187,5 +117,75 @@ function getFriendActivitiesRef(dcOrVars, vars) {
 exports.getFriendActivitiesRef = getFriendActivitiesRef;
 exports.getFriendActivities = function getFriendActivities(dcOrVars, vars) {
   return executeQuery(getFriendActivitiesRef(dcOrVars, vars));
+};
+
+function upsertUserRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return mutationRef(dcInstance, 'UpsertUser', inputVars);
+}
+exports.upsertUserRef = upsertUserRef;
+exports.upsertUser = function upsertUser(dcOrVars, vars) {
+  return executeMutation(upsertUserRef(dcOrVars, vars));
+};
+
+function addUserGoalRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return mutationRef(dcInstance, 'AddUserGoal', inputVars);
+}
+exports.addUserGoalRef = addUserGoalRef;
+exports.addUserGoal = function addUserGoal(dcOrVars, vars) {
+  return executeMutation(addUserGoalRef(dcOrVars, vars));
+};
+
+function upsertProgressRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return mutationRef(dcInstance, 'UpsertProgress', inputVars);
+}
+exports.upsertProgressRef = upsertProgressRef;
+exports.upsertProgress = function upsertProgress(dcOrVars, vars) {
+  return executeMutation(upsertProgressRef(dcOrVars, vars));
+};
+
+function addFriendRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return mutationRef(dcInstance, 'AddFriend', inputVars);
+}
+exports.addFriendRef = addFriendRef;
+exports.addFriend = function addFriend(dcOrVars, vars) {
+  return executeMutation(addFriendRef(dcOrVars, vars));
+};
+
+function acceptFriendRequestRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  if('_useGeneratedSdk' in dcInstance) {
+    dcInstance._useGeneratedSdk();
+  } else {
+    console.error('Please update to the latest version of the Data Connect SDK by running `npm install firebase@dataconnect-preview`.');
+  }
+  return mutationRef(dcInstance, 'AcceptFriendRequest', inputVars);
+}
+exports.acceptFriendRequestRef = acceptFriendRequestRef;
+exports.acceptFriendRequest = function acceptFriendRequest(dcOrVars, vars) {
+  return executeMutation(acceptFriendRequestRef(dcOrVars, vars));
 };
 
