@@ -121,13 +121,13 @@ query GetUserProgress($keyEmail: String!) @auth(level: PUBLIC) {
     }
 }
 
-query GetAllRecipes {
+query GetAllRecipes  @auth(level: PUBLIC) {
     recipes (orderBy : {calories: DESC}){
         id name type calories instructions
     }
 }
 
-query GetUserFriends($userId: UUID!) {
+query GetUserFriends($userId: UUID!)  @auth(level: PUBLIC) {
     friendss(where: {_or: [{user1 : {id : {eq: $userId}}}, {user2: {id: {eq: $userId}}}]}) {
         user1 {
             id
@@ -141,7 +141,7 @@ query GetUserFriends($userId: UUID!) {
     }
 }
 
-query GetFriendActivities($userId: UUID!) {
+query GetFriendActivities($userId: UUID!)  @auth(level: PUBLIC) {
     friendss(where: {_or: [{user1 : {id : {eq: $userId}}}, {user2: {id: {eq: $userId}}}]}) {
         user1 {
             id
