@@ -587,3 +587,14 @@ nav {
     color: var(--primary-500);
   }
 }
+
+@keyframes slideIn {
+  from {
+      transform: translateY(100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}

@@ -2,6 +2,7 @@ import FriendList from "./FriendList";
 import ActivityFeed from "./ActivityFeed";
 import AddFriend from "./AddFriend";
 import "./Social.css";
+import MessageBubble from '../../ui/MessageBubble';
 
 export default function Social() {
     return (
@@ -12,6 +13,7 @@ export default function Social() {
                 <FriendList />
                 <h2>Activity Feed</h2>
                 <ActivityFeed />
+                <MessageBubble message="Workouts are always better with friends!" />
             </div>
         </div>
     );
