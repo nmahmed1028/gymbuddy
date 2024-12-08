@@ -61,7 +61,7 @@ mutation UpsertProgress($email: String!, $progress: Int, $dailyGoalsCompleted: I
 mutation AddFriend($userEmail: String!, $friendEmail: String!) {
   friends_insert(
     data :{
-      user1 : {email: $userEmail}
+      user1 : {email: $userEmail},
       user2 : {email: $friendEmail}
     }
   )
