@@ -103,7 +103,10 @@ function ModalWindow(props) {
         <div
             style={{
                 ...styles.modalWindow,
-                ...{ opacity: props.visible ? "1" : "0" },
+                ...{ 
+                    opacity: props.visible ? "1" : "0",
+                    pointerEvents: props.visible ? "auto" : "none"
+                },
             }}
             className="flex flex-col h-[500px]"
         >
