@@ -9,17 +9,15 @@ import ModalWindow from "./ModalWindow";
 
 
 
-function ChatWidget() {
-    // state variable to track if widget button was hovered on
+function ChatWidget({ isOpen, isPermanent }) {
     const [hovered, setHovered] = useState(false);
-    // state variable to track modal visibility
-    const [visible, setVisible] = useState(false);
-    //creating a ref 'id'
+    const [visible, setVisible] = useState(isOpen);
+    const [perm, setPerm] = useState(isPermanent);
     const widgetRef = useRef(null);
-    // use effect listener to check if the mouse was cliked outside the window 
+
     useEffect(() => {
         function handleClickOutside(event) {
-            if (widgetRef.current && !widgetRef.current.contains(event.target)) {
+            if (widgetRef.current && !widgetRef.current.contains(event.target) && !perm) {
                 setVisible(false);
             }
         }
@@ -27,16 +25,16 @@ function ChatWidget() {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [widgetRef]);
+    }, [widgetRef, perm]);
+
+    useEffect(() => {
+        setVisible(isOpen);
+        setPerm(isPermanent);
+    }, [isOpen, isPermanent]);
 
     return (
-        //container
-        //call widgetRef inside the div
         <div ref={widgetRef}>
-            {/* Call Modal Window */}
             <ModalWindow visible={visible} />
-
-            {/* Chat Button Component */}
             <div
                 onClick={() => setVisible(!visible)}
                 onMouseEnter={() => setHovered(true)}
@@ -46,7 +44,6 @@ function ChatWidget() {
                     ...{ border: hovered ? "1px solid black" : "" },
                 }}
             >
-                {/* Inner Container */}
                 <div
                     style={{
                         display: "flex",
@@ -54,10 +51,7 @@ function ChatWidget() {
                         justifyContent: "center",
                     }}
                 >
-                    {/* Button Icon */}
                     <BsFillChatFill size={20} color="white" />
-
-                    {/* Button Text */}
                     <span style={styles.chatWidgetText}>Chat Now!!</span>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import './Workout.css';
 import MessageBubble from '../../ui/MessageBubble';
 import React, { useState, useEffect, useRef } from "react";
 import { model } from "./../../../firebase";
+import ChatWidget from "../../Footer/ChatWidget";
 
 export default function Workout() {
     const [weeklyPlan, setWeekly] = useState({
@@ -85,16 +86,19 @@ export default function Workout() {
     return (
         <div className = "Workout">
             <WeeklyView weeklyPlan = {weeklyPlan} onDaySelect = {handleDaySelect}/>
-            <Modal isOpen = {modalOpen} onRequestClose = {handleModalClose} contentLabel = "Day Details">
-                {selectedDay && (
-                    <DayDetails
-                        day = {selectedDay}
-                        details = {weeklyPlan[selectedDay]}
-                        onSaveChanges = {handleSaveChanges}
-                    />
-                )}
-                <button onClick = {handleModalClose} className = "close-button">Close</button>
-            </Modal>
+            <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', zIndex: 10 }}>
+                <Modal isOpen={modalOpen} onRequestClose={handleModalClose} contentLabel="Day Details" style={{ zIndex: 20 }}>
+                    {selectedDay && (
+                        <DayDetails
+                            day={selectedDay}
+                            details={weeklyPlan[selectedDay]}
+                            onSaveChanges={handleSaveChanges}
+                        />
+                    )}
+                    <button onClick={handleModalClose} className="close-button">Close</button>
+                </Modal>
+                <ChatWidget isOpen={modalOpen} isPermanent={modalOpen} style={{ zIndex: 20 }} />
+            </div>
             <MessageBubble message={motivationM} />
         </div>
     );
