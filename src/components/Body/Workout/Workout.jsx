@@ -57,13 +57,18 @@ export default function Workout() {
         "page to help keep them motivated and on track with their fitness goals. " +
         "Please provide a motivational message to display at the bottom of the page. ";
         let motivation = "You're doing great! Keep up the good work!";
-        await model.generateContent(prompt)
-        .then((result) => {
-            motivation = result.response.text();
-        })
-        .catch((error) => {
+        try{
+            await model.generateContent(prompt)
+            .then((result) => {
+                motivation = result.response.text();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        }
+        catch (error) {
             console.error("Error:", error);
-        });
+        }
 
         return motivation;
     }
