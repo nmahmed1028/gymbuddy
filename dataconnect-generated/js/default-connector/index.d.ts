@@ -232,6 +232,51 @@ export interface User_Key {
 
 
 /* Allow users to create refs without passing in DataConnect */
+export function upsertUserRef(vars: UpsertUserVariables): MutationRef<UpsertUserData, UpsertUserVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function upsertUserRef(dc: DataConnect, vars: UpsertUserVariables): MutationRef<UpsertUserData,UpsertUserVariables>;
+
+export function upsertUser(vars: UpsertUserVariables): MutationPromise<UpsertUserData, UpsertUserVariables>;
+export function upsertUser(dc: DataConnect, vars: UpsertUserVariables): MutationPromise<UpsertUserData,UpsertUserVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function addUserGoalRef(vars: AddUserGoalVariables): MutationRef<AddUserGoalData, AddUserGoalVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function addUserGoalRef(dc: DataConnect, vars: AddUserGoalVariables): MutationRef<AddUserGoalData,AddUserGoalVariables>;
+
+export function addUserGoal(vars: AddUserGoalVariables): MutationPromise<AddUserGoalData, AddUserGoalVariables>;
+export function addUserGoal(dc: DataConnect, vars: AddUserGoalVariables): MutationPromise<AddUserGoalData,AddUserGoalVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function upsertProgressRef(vars: UpsertProgressVariables): MutationRef<UpsertProgressData, UpsertProgressVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function upsertProgressRef(dc: DataConnect, vars: UpsertProgressVariables): MutationRef<UpsertProgressData,UpsertProgressVariables>;
+
+export function upsertProgress(vars: UpsertProgressVariables): MutationPromise<UpsertProgressData, UpsertProgressVariables>;
+export function upsertProgress(dc: DataConnect, vars: UpsertProgressVariables): MutationPromise<UpsertProgressData,UpsertProgressVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function addFriendRef(vars: AddFriendVariables): MutationRef<AddFriendData, AddFriendVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function addFriendRef(dc: DataConnect, vars: AddFriendVariables): MutationRef<AddFriendData,AddFriendVariables>;
+
+export function addFriend(vars: AddFriendVariables): MutationPromise<AddFriendData, AddFriendVariables>;
+export function addFriend(dc: DataConnect, vars: AddFriendVariables): MutationPromise<AddFriendData,AddFriendVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function acceptFriendRequestRef(vars: AcceptFriendRequestVariables): MutationRef<AcceptFriendRequestData, AcceptFriendRequestVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function acceptFriendRequestRef(dc: DataConnect, vars: AcceptFriendRequestVariables): MutationRef<AcceptFriendRequestData,AcceptFriendRequestVariables>;
+
+export function acceptFriendRequest(vars: AcceptFriendRequestVariables): MutationPromise<AcceptFriendRequestData, AcceptFriendRequestVariables>;
+export function acceptFriendRequest(dc: DataConnect, vars: AcceptFriendRequestVariables): MutationPromise<AcceptFriendRequestData,AcceptFriendRequestVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
 export function getUserByEmailRef(vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData, GetUserByEmailVariables>;
 /* Allow users to pass in custom DataConnect instances */
 export function getUserByEmailRef(dc: DataConnect, vars: GetUserByEmailVariables): QueryRef<GetUserByEmailData,GetUserByEmailVariables>;
@@ -300,50 +345,5 @@ export function getFriendActivitiesRef(dc: DataConnect, vars: GetFriendActivitie
 
 export function getFriendActivities(vars: GetFriendActivitiesVariables): QueryPromise<GetFriendActivitiesData, GetFriendActivitiesVariables>;
 export function getFriendActivities(dc: DataConnect, vars: GetFriendActivitiesVariables): QueryPromise<GetFriendActivitiesData,GetFriendActivitiesVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function upsertUserRef(vars: UpsertUserVariables): MutationRef<UpsertUserData, UpsertUserVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function upsertUserRef(dc: DataConnect, vars: UpsertUserVariables): MutationRef<UpsertUserData,UpsertUserVariables>;
-
-export function upsertUser(vars: UpsertUserVariables): MutationPromise<UpsertUserData, UpsertUserVariables>;
-export function upsertUser(dc: DataConnect, vars: UpsertUserVariables): MutationPromise<UpsertUserData,UpsertUserVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function addUserGoalRef(vars: AddUserGoalVariables): MutationRef<AddUserGoalData, AddUserGoalVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function addUserGoalRef(dc: DataConnect, vars: AddUserGoalVariables): MutationRef<AddUserGoalData,AddUserGoalVariables>;
-
-export function addUserGoal(vars: AddUserGoalVariables): MutationPromise<AddUserGoalData, AddUserGoalVariables>;
-export function addUserGoal(dc: DataConnect, vars: AddUserGoalVariables): MutationPromise<AddUserGoalData,AddUserGoalVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function upsertProgressRef(vars: UpsertProgressVariables): MutationRef<UpsertProgressData, UpsertProgressVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function upsertProgressRef(dc: DataConnect, vars: UpsertProgressVariables): MutationRef<UpsertProgressData,UpsertProgressVariables>;
-
-export function upsertProgress(vars: UpsertProgressVariables): MutationPromise<UpsertProgressData, UpsertProgressVariables>;
-export function upsertProgress(dc: DataConnect, vars: UpsertProgressVariables): MutationPromise<UpsertProgressData,UpsertProgressVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function addFriendRef(vars: AddFriendVariables): MutationRef<AddFriendData, AddFriendVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function addFriendRef(dc: DataConnect, vars: AddFriendVariables): MutationRef<AddFriendData,AddFriendVariables>;
-
-export function addFriend(vars: AddFriendVariables): MutationPromise<AddFriendData, AddFriendVariables>;
-export function addFriend(dc: DataConnect, vars: AddFriendVariables): MutationPromise<AddFriendData,AddFriendVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function acceptFriendRequestRef(vars: AcceptFriendRequestVariables): MutationRef<AcceptFriendRequestData, AcceptFriendRequestVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function acceptFriendRequestRef(dc: DataConnect, vars: AcceptFriendRequestVariables): MutationRef<AcceptFriendRequestData,AcceptFriendRequestVariables>;
-
-export function acceptFriendRequest(vars: AcceptFriendRequestVariables): MutationPromise<AcceptFriendRequestData, AcceptFriendRequestVariables>;
-export function acceptFriendRequest(dc: DataConnect, vars: AcceptFriendRequestVariables): MutationPromise<AcceptFriendRequestData,AcceptFriendRequestVariables>;
 
 

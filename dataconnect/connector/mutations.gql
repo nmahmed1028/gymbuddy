@@ -27,7 +27,7 @@ mutation UpsertUser($email: String!, $username: String!, $displayname: String) @
   )
 }
 
-mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $goalText: String){
+mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $goalText: String) @auth(level: PUBLIC) {
   userGoal_insert(
     data: {
       user : {email : $email}
@@ -45,7 +45,7 @@ mutation AddUserGoal($email: String!, $goalType: String!, $goalPoints: Int!, $go
 # Then, take those values, modify them by adding the xp total, incrementing the goals, etc.
 # Finally, call this mutation again with the updated values
 
-mutation UpsertProgress($email: String!, $progress: Int, $dailyGoalsCompleted: Int, $weeklyGoalsCompleted: Int, $monthlyGoalsCompleted: Int, $totalGoalsCompleted: Int){
+mutation UpsertProgress($email: String!, $progress: Int, $dailyGoalsCompleted: Int, $weeklyGoalsCompleted: Int, $monthlyGoalsCompleted: Int, $totalGoalsCompleted: Int) @auth(level: PUBLIC) {
   userProgress_upsert(
     data:{
       user : {email: $email}
@@ -58,7 +58,7 @@ mutation UpsertProgress($email: String!, $progress: Int, $dailyGoalsCompleted: I
   )
 }
 
-mutation AddFriend($userEmail: String!, $friendEmail: String!) {
+mutation AddFriend($userEmail: String!, $friendEmail: String!) @auth(level: PUBLIC) {
   friends_insert(
     data :{
       user1 : {email: $userEmail},
@@ -67,7 +67,7 @@ mutation AddFriend($userEmail: String!, $friendEmail: String!) {
   )
 }
 
-mutation AcceptFriendRequest($userEmail: String!, $friendEmail: String!) {
+mutation AcceptFriendRequest($userEmail: String!, $friendEmail: String!) @auth(level: PUBLIC) {
   friends_update(key: {user1Email: $userEmail user2Email: $friendEmail}
     data:{
       status: "accepted"
